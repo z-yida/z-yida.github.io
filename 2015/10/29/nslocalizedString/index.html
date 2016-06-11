@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>NsLocalizedString的使用 | yida&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于NSLocalizedString的介绍
+字符串也许是计算最通用的数据类型。他们以符号的方式传来传去，用来为数值编码，键值关联，代表资源路径，存储语言内容和格式的信息。对面向用户的字符串具有强有力的控制是营造良好的用户体验必不可少的能力。
+在 Foundation 中，有一个方便的宏表示作为面向用户的字符串：NSLocalizedString。
+NSLocalizedString 提供本地化字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NsLocalizedString的使用">
+<meta property="og:url" content="http://yoursite.com/2015/10/29/nslocalizedString/index.html">
+<meta property="og:site_name" content="yida's blog">
+<meta property="og:description" content="关于NSLocalizedString的介绍
+字符串也许是计算最通用的数据类型。他们以符号的方式传来传去，用来为数值编码，键值关联，代表资源路径，存储语言内容和格式的信息。对面向用户的字符串具有强有力的控制是营造良好的用户体验必不可少的能力。
+在 Foundation 中，有一个方便的宏表示作为面向用户的字符串：NSLocalizedString。
+NSLocalizedString 提供本地化字">
+<meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/localization_project_setting.png">
+<meta property="og:updated_time" content="2016-02-23T03:18:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NsLocalizedString的使用">
+<meta name="twitter:description" content="关于NSLocalizedString的介绍
+字符串也许是计算最通用的数据类型。他们以符号的方式传来传去，用来为数值编码，键值关联，代表资源路径，存储语言内容和格式的信息。对面向用户的字符串具有强有力的控制是营造良好的用户体验必不可少的能力。
+在 Foundation 中，有一个方便的宏表示作为面向用户的字符串：NSLocalizedString。
+NSLocalizedString 提供本地化字">
+  
+    <link rel="alternative" href="/atom.xml" title="yida&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/yida_pic.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">yida</a></h1>
+		</hgroup>
+
+		
+		
+		<form><input type="text" class="search" placeholder=" Search..."></form>
+				
+
+
+		
+			<div id="switch-btn" class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div id="switch-area" class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/iOS/">iOS技术文档</a></li>
+				        
+							<li><a href="/categories/financial">金融文档</a></li>
+				        
+							<li><a href="/categories/introduction">随笔</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="Email"><a class="Email" target="_blank" href="/yida9623@126.com" title="Email"></a></li>
+					        
+						</ul>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/iOS/" style="font-size: 10px;">iOS</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">专注于前端</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">yida</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img lazy-src="/img/yida_pic.png" class="js-avatar">
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">yida</a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/iOS/">iOS技术文档</a></li>
+		        
+					<li><a href="/categories/financial">金融文档</a></li>
+		        
+					<li><a href="/categories/introduction">随笔</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="Email"><a class="Email" target="_blank" href="/yida9623@126.com" title="Email"></a></li>
+					        
+						</ul>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-nslocalizedString" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/29/nslocalizedString/" class="article-date">
+  	<time datetime="2015-10-29T13:48:50.000Z" itemprop="datePublished">2015-10-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NsLocalizedString的使用
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/iOS/">iOS</a>
+	</div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关于NSLocalizedString的介绍</strong></p>
+<p>字符串也许是计算最通用的数据类型。他们以符号的方式传来传去，用来为数值编码，键值关联，代表资源路径，存储语言内容和格式的信息。对面向用户的字符串具有强有力的控制是营造良好的用户体验必不可少的能力。</p>
+<p>在 Foundation 中，有一个方便的宏表示作为面向用户的字符串：NSLocalizedString。</p>
+<p>NSLocalizedString 提供本地化字符串的 “一次编译 / 随处运行” 的方式，根据用户设置的字符串表把所有本地化字符串替换成对应的翻译。但是，即使你不打算把你的应用程序本地化到任何其他市场，NSLocalizedString 在拷贝与编辑上仍然有神奇的作用。</p>
+<p><strong>关于NSLocale的介绍</strong></p>
+<p>产品的国际化就像牙线：所有人都知道他们应该使用，却可能都不去用。</p>
+<p>像其他习惯一样，通过不断实践才能使应用国际化这件事变成你开发过程中的天性，以至于习惯之后你都没有办法容许自己不做国际化。而你现在所需的只是一个人教你如何去做。</p>
+<p>就让NSHipster成为帮你通过这一片异土的维吉尔牙齿健康专家，保证没有蛀牙哟！</p>
+<a id="more"></a>
+<h3 id="NSLocalizedString的说明">NSLocalizedString的说明</h3><h4 id="定义及使用">定义及使用</h4><p>NSLocalizedString 是一个 Foundation 的宏定义，返回一个字符串的本地化版本。它有两个参数：key：进行本地化的唯一字符串标识，和 comment：用于提供用来准确翻译的足够的上下文的字符串。</p>
+<p>在实践中，key 往往只是用来翻译的基准字符串，而 comment 通常是 nil，除非有一个模糊的上下文：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">textField<span class="variable">.placeholder</span> = <span class="built_in">NSLocalizedString</span>(<span class="string">@"Username"</span>, <span class="literal">nil</span>);</span><br></pre></td></tr></table></figure>
+<p>NSLocalizedString 也可以在 NSString +stringWithFormat: 中用来作为格式化字符串。在这种情况下，使用 comment 参数来提供达到正确翻译足够的上下文是很重要的。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span><span class="variable">.title</span> = [<span class="built_in">NSString</span> stringWithFormat:<span class="built_in">NSLocalizedString</span>(<span class="string">@"%@'s Profile"</span>, <span class="string">@"&#123;User First Name&#125;'s Profile"</span>), user<span class="variable">.name</span>];</span><br><span class="line"></span><br><span class="line">label<span class="variable">.text</span> = [<span class="built_in">NSString</span> stringWithFormat:<span class="built_in">NSLocalizedString</span>(<span class="string">@"Showing %lu of %lu items"</span>, <span class="string">@"Showing &#123;number&#125; of &#123;total number&#125; items"</span>), [page count], [items count]];</span><br></pre></td></tr></table></figure>
+<p>随着控制（和模糊）程度的增加，有四个种类的 NSLocalizedString：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> * <span class="built_in">NSLocalizedString</span>(</span><br><span class="line">  <span class="built_in">NSString</span> *key,</span><br><span class="line">  <span class="built_in">NSString</span> *comment</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> * <span class="built_in">NSLocalizedStringFromTable</span>(</span><br><span class="line">  <span class="built_in">NSString</span> *key,</span><br><span class="line">  <span class="built_in">NSString</span> *tableName,</span><br><span class="line">  <span class="built_in">NSString</span> *comment</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> * <span class="built_in">NSLocalizedStringFromTableInBundle</span>(</span><br><span class="line">  <span class="built_in">NSString</span> *key,</span><br><span class="line">  <span class="built_in">NSString</span> *tableName,</span><br><span class="line">  <span class="built_in">NSBundle</span> *bundle,</span><br><span class="line">  <span class="built_in">NSString</span> *comment</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> * <span class="built_in">NSLocalizedStringWithDefaultValue</span>(</span><br><span class="line">  <span class="built_in">NSString</span> *key,</span><br><span class="line">  <span class="built_in">NSString</span> *tableName,</span><br><span class="line">  <span class="built_in">NSBundle</span> *bundle,</span><br><span class="line">  <span class="built_in">NSString</span> *value,</span><br><span class="line">  <span class="built_in">NSString</span> *comment</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>99％ 的情况下，NSLocalizedString 就足够了。如果你实现的是一个库或共享组件，应该使用 NSLocalizedStringFromTable。</p>
+<h4 id="关于Localizable-strings">关于Localizable.strings</h4><p>在运行时，NSLocalizedString 会确定首选的语言，并在应用程序包中找到相应的 Localizable.strings 文件。例如，如果用户首选法语，文件 fr.lproj/Localizable.strings 将来用作参考。</p>
+<p>就是下面这个样子:<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/<span class="keyword">*</span> No comment provided by engineer. <span class="keyword">*</span>/</span><br><span class="line"><span class="string">"Username"</span>=<span class="string">"nom d'utilisateur"</span>;</span><br><span class="line">/<span class="keyword">*</span> &#123;User First Name&#125;'s Profile <span class="keyword">*</span>/</span><br><span class="line"><span class="string">"%@'s Profile"</span>=<span class="string">"profil de %1$@"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>Localizable.strings 文件最初将由 genstrings 产生。</p>
+<p>genstrings 程序用给定的参数从 C 或 Objective-C（.c 或 .m）的源代码文件生成一个 .strings 文件。一个 .strings 文件用于为应用程序的不同语言作本地化，正如 Cocoa 开发者文档下的’Internationalization’描述的那样.</p>
+<p>genstrings 会浏览每个所选的源文件，以及每个使用 NSLocalizedString 的源文件，把键和注释追加到目标文件。这取决于开发人员是否为每个语言创建该文件的副本，并进行本地化翻译。</p>
+<h4 id="不要模板化">不要模板化</h4><p>在阅读了有关本地化的格式字符串的一部分之后，你可能会采取通过聪明的，DRY 的方式创建可重复使用的诸如 @”{Noun} {Verb} {Noun}” 这样的语法模板，并分别为每一个字做翻译…</p>
+<p>不要这样做 这件事怎么强调也不过分：不要细分本地化字符串。上下文可能会丢失，语法结构将变得非常凌乱和不合常规，动词会被错误地改变格式，你将完全搞错重点 —— 在一些事情上花大力气比你在一开始就没有尽力更糟。</p>
+<p>数字，日期，以及类似的几乎总是可以安全替代的值。名词受到多元化和动词变形的影响，但通常作为直接或间接的对象安全的替换。</p>
+<p>NSLocalizedString 是代码质量的一个非常可靠的指标。那些愿意多花一些时间到国际化的人在涉及到设计和实现的时候也很可能会一样的周到。</p>
+<p>始终把面向用户的字符串用 NSLocalizedString 包起来。</p>
+<p>即使你不打算把你的应用程序本地化成其他语言，能够轻松地查看所有用户将看到字符串也是 非常 有用的。如果本地化在你的计划中，把你的字符串在一开始就 NSLocalize 也将使这变得非常容易，你只需在必要的时候将它们都找出来就可以了。</p>
+<h4 id="xcode设置">xcode设置</h4><ol>
+<li>先创建NSLocalizable.strings文件</li>
+<li>点击文件，右键show file inspactor</li>
+<li>默认只是创建了English版本的NSLocalizable.string(English)，如果需要添加中文版的，则需要添加NSLocalization.String(Chinese),Project-&gt;info-&gt;Localizations的设置:</li>
+</ol>
+<p><img src="http://7xnx15.com1.z0.glb.clouddn.com/localization_project_setting.png" alt="设置"></p>
+<h3 id="NSLocale">NSLocale</h3><h4 id="国际化相对于本地化">国际化相对于本地化</h4><p>每当我们讨论国际化（i18n）或者本地化（l10n）的时候，我们有必要弄清楚两者之间的区别：</p>
+<p><code>本地化</code>是将你的应用适应某一个特定市场的操作。<br><code>国际化</code>是将你的应用本地化的准备操作</p>
+<p>让国际化变得困难的是，你需要摆脱你的文化环境去思考。像排序或者分类之类的工作，之前你觉得很微不足道而不想去管，但现在你必须得与这种情绪做斗争了，而且还得重视一些极小差别可能带来的痛苦或者困惑。</p>
+<p>不过幸运的是，你不是一个人在战斗，现在来介绍NSLocale。</p>
+<p>NSLocale是一个包含这所有地区的语言与文化习俗的基础类。一个NSLocale的实例包含了针对这个地区内特定一群人的所有语言文化基准，其中包括：<br>语言，键盘，数字，日期和时间格式，货币，排序和分类，符号、颜色与头像的使用</p>
+<p>每一个NSLocale实例对应着一个地区标识符，例如en_US，fr_FR，ja_JP和en_GB，这些标识符包含一个语言码（例如en代表英语）和一个地区码（例如US代表美国）。</p>
+<p>地区标识符还能标识更多更详尽的货币、日历系统或者数字表示的一些使用偏好。例如de_DE@collation=phonebook,currency=DDM就表示了说德语的德国人，文字使用电话本排序，使用的货币在加入欧盟之前是德国马克。</p>
+<p>用户可以在“语言和地区”（在早期版本的OS X里是“国际化”）选项里改变他们的系统设置，在iOS里是在“通用&gt;多语言环境”里设置。</p>
+<p>NSLocale也有Foundation中对领域专有的迂腐特征，而没有比-objectForKey:这个方法更明显地体现这个迂腐了。这是这个方法里key的常量的列表：</p>
+<p>NSLocaleIdentifier<br>NSLocaleLanguageCode<br>NSLocaleCountryCode<br>NSLocaleScriptCode<br>NSLocaleVariantCode<br>NSLocaleExemplarCharacterSet<br>NSLocaleCalendar<br>NSLocaleCollationIdentifier<br>NSLocaleUsesMetricSystem<br>NSLocaleMeasurementSystem<br>NSLocaleDecimalSeparator<br>NSLocaleGroupingSeparator<br>NSLocaleCurrencySymbol<br>NSLocaleCurrencyCode<br>NSLocaleCollatorIdentifier<br>NSLocaleQuotationBeginDelimiterKey<br>NSLocaleQuotationEndDelimiterKey<br>NSLocaleAlternateQuotationBeginDelimiterKey<br>NSLocaleAlternateQuotationEndDelimiterKey</p>
+<p>尽管这些东西看起来都有些难懂，但如果为了让自己的应用有更好的体验，你会惊讶于你使用这些常数的频率的。</p>
+<p><a href="http://nshipster.cn/nslocale/" target="_blank" rel="external">原文链接</a>/)</p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+<div class="copyright">
+  <p><span>本文标题:</span><a href="/2015/10/29/nslocalizedString/">NsLocalizedString的使用</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 yida 的个人博客">yida</a></p>
+  <p><span>发布时间:</span>2015年10月29日 - 21时10分</p>
+  <p><span>最后更新:</span>2016年2月23日 - 11时02分</p>
+  <p>
+    <span>原始链接:</span><a href="/2015/10/29/nslocalizedString/" title="NsLocalizedString的使用">http://yoursite.com/2015/10/29/nslocalizedString/</a>
+    <span class="btn" data-clipboard-text="原文: http://yoursite.com/2015/10/29/nslocalizedString/　　作者: yida" title="点击复制文章链接">
+        <i class="fa fa-clipboard"></i>
+    </span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。</p>
+  <script src="/js/clipboard.min.js"></script>
+  <script> var clipboard = new Clipboard('.btn'); </script>
+</div>
+<style type="text/css">
+  .copyright p .btn {
+    margin-left: 1em;
+  }
+  .copyright:hover p .btn::after {
+    content: "复制"
+  }
+  .copyright p .btn:hover {
+      color: gray;
+      cursor: pointer;
+    };
+</style>
+
+
+
+<nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2016/01/11/jsbridgekykj/">
+        开源库WebViewJavascriptBridge
+      </a>
+    </div>
+  
+  
+    <div id="article-nav-older" class="article-nav-title">
+      <a href="/2015/10/29/use-hexo/">
+        使用hexo搭建博客
+      </a>
+    </div>
+  
+</nav>
+
+  
+</article>
+
+<!-- 默认显示文章目录，在文章---前输入toc: false关闭目录 -->
+<!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
+<div id="toc" class="toc-article">
+<strong class="toc-title">文章目录</strong>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSLocalizedString的说明"><span class="toc-number">1.</span> <span class="toc-text">NSLocalizedString的说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义及使用"><span class="toc-number">1.1.</span> <span class="toc-text">定义及使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于Localizable-strings"><span class="toc-number">1.2.</span> <span class="toc-text">关于Localizable.strings</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不要模板化"><span class="toc-number">1.3.</span> <span class="toc-text">不要模板化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xcode设置"><span class="toc-number">1.4.</span> <span class="toc-text">xcode设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSLocale"><span class="toc-number">2.</span> <span class="toc-text">NSLocale</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#国际化相对于本地化"><span class="toc-number">2.1.</span> <span class="toc-text">国际化相对于本地化</span></a></li></ol></li></ol>
+</div>
+<style type="text/css">
+  .left-col .switch-btn {
+    display: none;
+  }
+  .left-col .switch-area {
+    display: none;
+  }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script type="text/javascript">
+  var toc_button= document.getElementById("tocButton");
+  var toc_div= document.getElementById("toc");
+  /* Show or hide toc when click on tocButton.
+  通过点击设置的按钮显示或者隐藏文章目录.*/
+  toc_button.onclick=function(){
+  if(toc_div.style.display=="none"){
+  toc_div.style.display="block";
+  toc_button.value="隐藏目录";
+  document.getElementById("switch-btn").style.display="none";
+  document.getElementById("switch-area").style.display="none";
+  }
+  else{
+  toc_div.style.display="none";
+  toc_button.value="显示目录";
+  document.getElementById("switch-btn").style.display="block";
+  document.getElementById("switch-area").style.display="block";
+  }
+  }
+</script>
+
+
+<div class="share">
+	<div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+	</div>
+	<script>
+	window._bd_share_config={
+		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+</div>
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    </div>
+
+
+  
+  
+    
+    <div  class="post-nav-button">
+    <a href="/2016/01/11/jsbridgekykj/" title="上一篇: 开源库WebViewJavascriptBridge">
+    <i class="fa fa-angle-left"></i>
+    </a>
+    <a href="/2015/10/29/use-hexo/" title="下一篇: 使用hexo搭建博客">
+    <i class="fa fa-angle-right"></i>
+    </a>
+    </div>
+  
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2016 yida
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+        </div>
+    </div>
+    <div class="visit">
+      <span id="busuanzi_container_site_pv" style='display:none'>
+        <span id="site-visit" >本站到访数: 
+        <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </span>
+      <span id="busuanzi_container_page_pv" style='display:none'>
+        <span id="page-visit">, 本页阅读量: 
+        <span id="busuanzi_value_page_pv"></span>
+        </span>
+      </span>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  var backgroundList = ["url(/background/bg-1.jpg)", "url(/background/bg-2.jpg)","url(/background/bg-3.jpg)","url(/background/bg-4.jpg)","url(/background/bg-5.jpg)"];
+  var background = Math.floor(Math.random() * backgroundList.length);
+  $("body").css({"background": backgroundList[background], "background-attachment": "fixed", "background-size": "cover"});
+</script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

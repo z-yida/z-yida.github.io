@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS Extension的功能点 | yida&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="应用扩展(App Extension)是iOS8最值得人期待的功能之一。它们让开发者在整个操作系统的其他部分扩展应用程序的内容和功能。iOS8是一个开放的平台允许用户在他们的设备上进行更多的交互。应用扩展使开发人员能够在他们没有自己的应用程序的地方提供自定义功能的权利，甚至包括Apple的股票应用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS Extension的功能点">
+<meta property="og:url" content="http://yoursite.com/2016/06/04/iOSExtensionFunction/index.html">
+<meta property="og:site_name" content="yida's blog">
+<meta property="og:description" content="应用扩展(App Extension)是iOS8最值得人期待的功能之一。它们让开发者在整个操作系统的其他部分扩展应用程序的内容和功能。iOS8是一个开放的平台允许用户在他们的设备上进行更多的交互。应用扩展使开发人员能够在他们没有自己的应用程序的地方提供自定义功能的权利，甚至包括Apple的股票应用。">
+<meta property="og:image" content="http://foggry.com/images/article5/detailed_communication.png">
+<meta property="og:image" content="http://foggry.com/images/article5/app_extensions_container_restrictions.png">
+<meta property="og:image" content="http://foggry.com/images/article5/app_group.png">
+<meta property="og:image" content="http://foggry.com/images/article5/app_extensions_lifecycle.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/37334-cf3f807d47648ef1.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/37334-b71c9fc7e3bd931e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/37334-16cdd20348eefa59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg">
+<meta property="og:updated_time" content="2016-06-07T11:30:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS Extension的功能点">
+<meta name="twitter:description" content="应用扩展(App Extension)是iOS8最值得人期待的功能之一。它们让开发者在整个操作系统的其他部分扩展应用程序的内容和功能。iOS8是一个开放的平台允许用户在他们的设备上进行更多的交互。应用扩展使开发人员能够在他们没有自己的应用程序的地方提供自定义功能的权利，甚至包括Apple的股票应用。">
+  
+    <link rel="alternative" href="/atom.xml" title="yida&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/yida_pic.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">yida</a></h1>
+		</hgroup>
+
+		
+		
+		<form><input type="text" class="search" placeholder=" Search..."></form>
+				
+
+
+		
+			<div id="switch-btn" class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div id="switch-area" class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/iOS/">iOS技术文档</a></li>
+				        
+							<li><a href="/categories/financial">金融文档</a></li>
+				        
+							<li><a href="/categories/introduction">随笔</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="Email"><a class="Email" target="_blank" href="/yida9623@126.com" title="Email"></a></li>
+					        
+						</ul>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/iOS/" style="font-size: 10px;">iOS</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">专注于前端</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">yida</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img lazy-src="/img/yida_pic.png" class="js-avatar">
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">yida</a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/iOS/">iOS技术文档</a></li>
+		        
+					<li><a href="/categories/financial">金融文档</a></li>
+		        
+					<li><a href="/categories/introduction">随笔</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="Email"><a class="Email" target="_blank" href="/yida9623@126.com" title="Email"></a></li>
+					        
+						</ul>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-iOSExtensionFunction" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/04/iOSExtensionFunction/" class="article-date">
+  	<time datetime="2016-06-04T04:12:12.000Z" itemprop="datePublished">2016-06-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS Extension的功能点
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/iOS/">iOS</a>
+	</div>
+
+
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>应用扩展(App Extension)是iOS8最值得人期待的功能之一。它们让开发者在整个操作系统的其他部分扩展应用程序的内容和功能。iOS8是一个开放的平台允许用户在他们的设备上进行更多的交互。应用扩展使开发人员能够在他们没有自己的应用程序的地方提供自定义功能的权利，甚至包括Apple的股票应用。</p>
+<a id="more"></a>
+<h4 id="总览：">总览：</h4><h5 id="扩展的接入点：">扩展的接入点：</h5><ul>
+<li>Today扩展-在下拉的通知中心的”今天”的面板中添加一个widget</li>
+<li>分享扩展：  点击分享按钮后将网站或者照片通过应用分享</li>
+<li>动作扩展 点击Action按钮通过判断上下文将内容发送到应用</li>
+<li>照片编辑扩展 在系统的照片应用总提供照片编辑的能力</li>
+<li>文档提供扩展 提供和管理文件内容</li>
+<li>自定义键盘 提供一个可以用在所有应用的替代系统键盘或者输入法</li>
+</ul>
+<p>更详细的描述：<a href="https://onevcat.com/2014/08/notification-today-widget/" target="_blank" rel="external">点击查看</a></p>
+<h5 id="extension">extension</h5><p>extension并不是一个独立的app，他有一个包含在app bundle中的独立bundle，extension的bundle后缀名是.appex.它的生命周期也和普通app不同，这些后文会详细描述。</p>
+<p>extension不能单独存在，必须有一个包含它的containing app.</p>
+<p>另外。extension需要用户手动激活，不同的extension激活方式也不相同，比如Today中的widget需要在Today中激活和关闭； Customer keyboard需要在设置中进行相关设置；Phone Edit需要在使用照片时在照片的管理器中激活或者关闭；storage Provider可以在选择文件时出现；share和Action可以在任何应用里被激活，但前提是开发者需要设置Activation Rules,以确定extension需要在合适出现。</p>
+<h5 id="containing_app">containing app</h5><p>尽管苹果开放了extension，但是在iOS中extension并不能单独存在，要想提交App store,必须将extension包含在一个app中提交 ，并且app的实现部分不能为空，这个包含extension的app就叫做containing app.</p>
+<p>ExtensionContext是一个NSExtensionContext对象，分享的数据都封装在其inputItems属性中，这是一个包含NSExtensionItem对象的数组。实际上，不管你分享的多少内容，文字，多张图片或者链接，都封装在一个NSExtensionItem对象里，该对象中最重要的属性是attachments,是个NSItemProvider对象数组，每个NSItemProvider对象包含了单个分享的数据，可以是文字、图片、视频或者URL，这些数据都是由载体应用供应，但是UIActivityViewContoller来实现分享的时候传递的数据就封装在NSItemapProvider对象里，也就是说实际上我们要从NSItemProvider对象里面提取分享的数据。</p>
+<h5 id="extension和containing_app、host_app">extension和containing app、host app</h5><p>extension和host app之间可以通过extensionContext属性直接通信，该属性是新增加的UIViewController类别：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@interface UIViewController(NSExtensionAdditions) <span class="tag">&lt;<span class="title">NSExtensionRequestHandling</span>&gt;</span></span><br><span class="line">@property (nonatomic,readonly,retain) NSExtensionContext *extensionContext NS_AVAILABLE_IOS(8_0);</span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+<p>实际上extension和host app之间是用过IPC(interprocess communication)实现的，只是苹果把调用接口高度抽象了 我们并不需要关注那么底层的东西。</p>
+<h5 id="其他关系">其他关系</h5><p>containing app和host app之间没有任何直接关系，也从来不需要通信。<br>extension和containing app这二者之间的关系最复杂的，纠纠缠缠这不清关系。</p>
+<h5 id="三者关系图">三者关系图</h5><p>三者之间的关系可以通过官网给两张图片形象的说明</p>
+<p><img src="http://foggry.com/images/article5/detailed_communication.png" alt="各部件的关系"></p>
+<p><img src="http://foggry.com/images/article5/app_extensions_container_restrictions.png" alt=""></p>
+<h6 id="不能直接通信">不能直接通信</h6><p>尽管extension的bundle是放在containing app的bundle中，但是他们是两个完全独立的进程，之间不能直接通信。不过extension可以通过openURL的方式启动containing app(当然也能启动其他App)，不过必须通过extensionContext借助host app来实现：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[self.extensionContext openURL:[NSURL URLWithString:@"appextension://123"]</span><br><span class="line">                 completionHandler:^(BOOL success) &#123;</span><br><span class="line">                     NSLog(@"open url result:%d",success);</span><br><span class="line">                 &#125;];</span><br></pre></td></tr></table></figure></p>
+<p>extension是无法直接使用openURL的。</p>
+<h6 id="可以共享Shared_resources">可以共享Shared resources</h6><p>extension和containing app可以共同读写一个被称为Shared resources的存储区域，这是通过App Groups实现的，后文将会详述。详细的图片可以看上面的图片设计</p>
+<h6 id="containing_app能够控制extension的出现和隐藏">containing app能够控制extension的出现和隐藏</h6><p>通过以下代码，containing app可以让extension出现隐藏（当然extension也可以让自己隐藏）<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//让隐藏的插件重新显示</span><br><span class="line">- (void)showTodayExtension</span><br><span class="line">&#123;</span><br><span class="line">    [[NCWidgetController widgetController] setHasContent:YES forWidgetWithBundleIdentifier:@"com.wangzz.app.extension"];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//隐藏插件</span><br><span class="line">- (void)hiddeTodayExtension</span><br><span class="line">&#123;</span><br><span class="line">    [[NCWidgetController widgetController] setHasContent:NO forWidgetWithBundleIdentifier:@"com.wangzz.app.extension"];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="App_Groups">App Groups</h4><p>这是iOS8新开放的功能，在OS X上早就可以用了。他主要用于同一个group下的app共享同一份读写空间，以实现数据共享。</p>
+<p>extension和containing app共同读写一份数据是很合理的需求，比如系统的股市应用，widget和app中都需要展示几个公司的股票数据，这就可以通过App Groups实现。</p>
+<p>App Groups的设置</p>
+<p>如果想实现数据同步，必须要保证containing app中的App groups和extension中的App Groups是相同的。设置App Group的路径：TARGETS–&gt;TodayExtension–&gt;Capabilities–&gt;App Groups。</p>
+<p>App Groups在应用和扩展之间定义一套标志符，只有 拥有相同标识符的扩展和 容器应用才能使用共享的数据。App group的设置如下图，在容器应用中开启后，默认添加以[group]开头的标志符，这些标志符都会登记到你的开发者账号中老同事目录会多出一个和target名称相同的授权文件。在去对应的扩展的capabilities页面下，刚才在容器应用下添加的标识符已经出现了，只需要勾选即可。</p>
+<p><img src="http://foggry.com/images/article5/app_group.png" alt=""></p>
+<p>设置App group总是会遇到问题，在看那些开始设置App Groups的文章是这点总让人很沮丧。我第一次设置遇到了签名问题，解决方案可以看这里：<a href="http://stackoverflow.com/questions/25927604/xcode6embedded-binary-is-not-signed-with-the-same-certificate-as-the-parent-app" target="_blank" rel="external">点击这里查看问题</a></p>
+<p>具体怎么使用App Groups中的标识符来共享数据，一些类支持配置App Groups标识符来在容器应用和扩展之间共享数据，此时不能使用常规设置。</p>
+<p>extension和containing app的数据共享</p>
+<p>App Groups给我们的提供同一个group内app可以共同读写的区域，可以通过以下方式实现数据共享：</p>
+<p>NSUserDefaults:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">写入数据：</span><br><span class="line"></span><br><span class="line">1. 保存诗句的时候必须指明group id；</span><br><span class="line">2. 要注意NSUserDefaults能够处理的数据只能是可plist化的对象</span><br><span class="line">3. 为了防止出现数据同步问题，不要忘记synchronize</span><br><span class="line"></span><br><span class="line">NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.wangzz"];</span><br><span class="line">[shared setObject:_textField.text forKey:@"wangzz"];</span><br><span class="line">[shared synchronize];</span><br><span class="line"></span><br><span class="line">读取数据：</span><br><span class="line">NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.wangzz"];</span><br><span class="line">NSString *value = [shared valueForKey:@"wangzz"];</span><br></pre></td></tr></table></figure></p>
+<p>NSURLSession:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSURLSessionConfiguration *config = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@“xxx.backgroundsession”];</span><br><span class="line">config.sharedContainerIdentifier = @“group.xxx”;</span><br><span class="line">NSURLSession *mySession = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];</span><br></pre></td></tr></table></figure></p>
+<p>通过NSFileManager共享数据<br>NSFileManager:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">写入信息到文件中</span><br><span class="line">- (BOOL)saveTextByNSFileManager</span><br><span class="line">&#123;</span><br><span class="line">    NSError *err = nil;</span><br><span class="line">    NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.wangzz"];</span><br><span class="line">    containerURL = [containerURL URLByAppendingPathComponent:@"Library/Caches/good"];</span><br><span class="line"></span><br><span class="line">    NSString *value = _textField.text;</span><br><span class="line">    BOOL result = [value writeToURL:containerURL atomically:YES encoding:NSUTF8StringEncoding error:&amp;err];</span><br><span class="line">    if (!result) &#123;</span><br><span class="line">        NSLog(@"%@",err);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        NSLog(@"save value:%@ success.",value);</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">读取文件信息</span><br><span class="line">NSError *err = nil;</span><br><span class="line">NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.wangzz"];</span><br><span class="line">containerURL = [containerURL URLByAppendingPathComponent:@"Library/Caches/good"];</span><br><span class="line">NSString *value = [NSString stringWithContentsOfURL:containerURL encoding:NSUTF8StringEncoding error:&amp;err];</span><br><span class="line"></span><br><span class="line">在这里我们试着保存和读取的是字符串数据 ，但读写SQlite我相信也是没有问题的</span><br><span class="line"></span><br><span class="line">两个应用共同读取同一份数据，就会引发数据同步问题，WWDC2014的视频中建议使用NSFileCoordinate实现普通文件的读写同步，而数据库可以使用Core Data，SQLLite也支持同步。</span><br></pre></td></tr></table></figure></p>
+<h4 id="extension和containing_app代码共享">extension和containing app代码共享</h4><p>和数据共享类似，extension和containing app很自然的会有一些业务逻辑上可以共用的代码，这时可以通过iOS8中刚开放使用的framework实现。即将framework分别嵌入到extension和containing app的target中实现代码共享。但这样岂不是需要分别将framework分别copy到extension和containing app的main bundle中？</p>
+<p>参考extension和containing app的数据分享，我试想能不能讲framework值保存一份放在App Groups区域？</p>
+<h5 id="copy_framework到App_Groups">copy framework到App Groups</h5><p>在app首次启动的时候将framework放到App Groups区域：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">有风险 必须等到app启动的时候才能进行framework进行拷贝操作。简单的说其实就是将通过containing app加载的类可以共享给extension使用</span><br><span class="line">- (BOOL)copyFrameworkFromMainBundleToAppGroup</span><br><span class="line">&#123;</span><br><span class="line">    NSFileManager *manager = [NSFileManager defaultManager];</span><br><span class="line">    NSError *err = nil;</span><br><span class="line">    NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.wangzz"];</span><br><span class="line">    NSString *sorPath = [NSString stringWithFormat:@"%@/Dylib.framework",[[NSBundle mainBundle] bundlePath]];</span><br><span class="line">    NSString *desPath = [NSString stringWithFormat:@"%@/Library/Caches/Dylib.framework",containerURL.path];</span><br><span class="line"></span><br><span class="line">    BOOL removeResult = [manager removeItemAtPath:desPath error:&amp;err];</span><br><span class="line">    if (!removeResult) &#123;</span><br><span class="line">        NSLog(@"%@",err);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        NSLog(@"remove success.");</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    BOOL copyResult = [[NSFileManager defaultManager] copyItemAtPath:sorPath toPath:desPath error:&amp;err];</span><br><span class="line">    if (!copyResult) &#123;</span><br><span class="line">        NSLog(@"%@",err);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        NSLog(@"copy success.");</span><br><span class="line">    &#125;</span><br><span class="line">    return copyResult;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用framework：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)loadFrameworkInAppGroup</span><br><span class="line">&#123;</span><br><span class="line">    NSError *err = nil;</span><br><span class="line">    NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.wangzz"];</span><br><span class="line">    NSString *desPath = [NSString stringWithFormat:@"%@/Library/Caches/Dylib.framework",containerURL.path];</span><br><span class="line">    NSBundle *bundle = [NSBundle bundleWithPath:desPath];</span><br><span class="line">    BOOL result = [bundle loadAndReturnError:&amp;err];</span><br><span class="line">    if (result) &#123;</span><br><span class="line">        Class root = NSClassFromString(@"Person");</span><br><span class="line">        if (root) &#123;</span><br><span class="line">            Person *person = [[root alloc] init];</span><br><span class="line">            if (person) &#123;</span><br><span class="line">                [person run];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        NSLog(@"%@",err);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>经过测试，竟然能够加载成功。需要说明的，这里只是说那么用是可以成功加载framework，但还面临不少问题，比如如果用户在启动app之前去使用extension，这时framework还没有copy过去，怎么处理，另外iOS的机制或者苹果的审核是否允许这样使用等。<br>在一切确定下来之前还是乖乖按文档中的方式使用。</p>
+<h4 id="生命周期">生命周期</h4><p>extension和普通app的最大区别之一是生命周期。</p>
+<p>开始：在用户通过hos app点击extension时，系统就会实例化extension应用，这是生命周期的开始。<br>执行任务：在extension启动以后，开始执行他的生命<br>终止：在用户取消任务，或者任务执行结束，或者开启了一个长时后台任务时，系统就会将其杀掉。<br>由此可见：extension就是为了任务而生。</p>
+<p>下图来自官方文档，它将生命周期划分的更详细：<br><img src="http://foggry.com/images/article5/app_extensions_lifecycle.png" alt="生命周期的详细划分"></p>
+<h4 id="图片编辑">图片编辑</h4><p>NSItemProvider类也是iOS8中的新类，使用一种安全的方式在载体应用和扩展之前的传递数据，提供了一下两个方法来获取数据：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)hasItemConformingToTypeIdentifier:(NSString *)typeIdentifier//用于获取封装的数据类型，咋看之下非常别扭。需要提供 Uniform Type Identifier 简称 UTI 格式的标志符来找出数据类型。</span><br><span class="line">- (void)loadItemForTypeIdentifier:options:completionHandler://指定格式来获取数据，异步执行。</span><br></pre></td></tr></table></figure></p>
+<p>关于UTI是什么玩意？主要是用于统一数据格式，想了解更多可以看到官方文档：<br>E<img src="http://upload-images.jianshu.io/upload_images/37334-cf3f807d47648ef1.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg" alt="conformance_hierarchy.gif"></p>
+<p>哦，要了解的内容太多了点，现在就告诉我们怎么指定格式吧，上图就是一些常用的格式，@”public.image”就是一个UTI标示符，可以用于<code>- (BOOL)hasItemConformingToTypeIdentifier:(NSString *)typeIdentifier</code>方法，但这个方法好笨，要一个个查询，还有另外一个方法，可以直接得到NSItemProvider对象中的所有格式，好吧，只有一种，但为什么要用数组来记录，难道为了日后一个NSItemapProvider对象支持多个数据以及多数据类型，想不明白API为什么要设计得这么难用，或许是涉及UTI方面的考虑，是我想的太简单了，<br>得到数据格式后，使用- loadItemForTypeIdentifier:options:completionHandler:来获取数据，对于数据格式可以在options中指定图片大小，该方法在确定中确实拥有指定的格式后，会异步运行completionHandler闭包，该闭包第一个参数是个id<nssecurecoding>对象，实际上需要你来指定数据类型，为了不影响分享界面的流畅性，在后台获取数据，下面是具体的代码：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- (void)fetchItemDataAtBackground</span><br><span class="line">&#123;</span><br><span class="line">    //后台获取</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        NSArray *inputItems = self.extensionContext.inputItems;</span><br><span class="line">        NSExtensionItem *item = inputItems.firstObject;//无论多少数据，实际上只有一个 NSExtensionItem 对象</span><br><span class="line">        for (NSItemProvider *provider in item.attachments) &#123;</span><br><span class="line">            //completionHandler 是异步运行的</span><br><span class="line">            NSString *dataType = provider.registeredTypeIdentifiers.firstObject;//实际上一个NSItemProvider里也只有一种数据类型</span><br><span class="line">            if ([dataType isEqualToString:@"public.image"]) &#123;</span><br><span class="line">                [provider loadItemForTypeIdentifier:dataType options:nil completionHandler:^(UIImage *image, NSError *error)&#123;</span><br><span class="line">                    //collect image...</span><br><span class="line">                &#125;];</span><br><span class="line">            &#125;else if ([dataType isEqualToString:@"public.plain-text"])&#123;</span><br><span class="line">                [provider loadItemForTypeIdentifier:dataType options:nil completionHandler:^(NSString *contentText, NSError *error)&#123;</span><br><span class="line">                    //collect image...</span><br><span class="line">                &#125;];</span><br><span class="line">            &#125;else if ([dataType isEqualToString:@"public.url"])&#123;</span><br><span class="line">                [provider loadItemForTypeIdentifier:dataType options:nil completionHandler:^(NSURL *url, NSError *error)&#123;</span><br><span class="line">                    //collect url...</span><br><span class="line">                &#125;];</span><br><span class="line">            &#125;else</span><br><span class="line">                NSLog(@"don't support data type: %@", dataType);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></nssecurecoding></p>
+<p>获取数据的行为不要放在-(void)didSelectPost()里，这不用说明吧。在实际场景中，你可能会分享几张照片加上文字说明，或者URL链接加上文字说明，或是几个视频加上文字说明；总之基本上会有文字说明，而很少混合几种不同的类型，比如要同时分享照片，链接或者扩展视频，扩展是个轻量级的功能，混合类型让任务变得繁重，当然PM脑残允许这种方式的上传就开发的心情了。</p>
+<p>//关于下载 官方给了一个例子：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSURLSession *mySession = [self configureMySession];</span><br><span class="line">NSURL *url = [NSURL URLWithString:@"http://www.example.com/LargeFile.zip"];</span><br><span class="line">NSURLSessionTask *myTask = [mySession downloadTaskWithURL:url];</span><br><span class="line">[myTask resume];</span><br><span class="line"></span><br><span class="line">-(NSURLSession *) configureMySession &#123;</span><br><span class="line">    if (!mySession) &#123;</span><br><span class="line">        NSURLSessionConfiguration* config = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@“com.mycompany.myapp.backgroundsession”];</span><br><span class="line">		config.sharedContainerIdentifier = @“com.mycompany.myappgroupidentifier”;</span><br><span class="line">        mySession = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];</span><br><span class="line">    &#125;</span><br><span class="line">    return mySession;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于一个后台上传任务，在NSURLSession上配置定好的标识符，这样容器应用接手时，就能知道是哪个扩展的任务，此时在容器中需要做些什么呢？当后台任务结束时，系统调用-application:handleEventsForBackgroundURLSession:completionHandler:在后台唤醒容器应用来处理。</p>
+<p>定制扩展行为<br>分享扩展应该尽量可能轻量化，这需要添加很多限制，比如限制分享类型、数量。当不满足条件时，分享扩展不会出现在菜单中，而不是仅仅没有开启。扩展的很多设置都可以在info.plist文件中实现。</p>
+<p>在扩展的info.plist文件中找到NSExtension项，默认设置如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/37334-b71c9fc7e3bd931e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg" alt=""></p>
+<p>NSExtensionActivationRule的默认类型是NSString，其值TRUEPREDICATE表示在分享菜单上一直显示扩展，这种设置对分享不做任何限制，上面提到印象笔记和Mail应用只支持最多5张图片，超出后将在分享菜单看不到；；NSExtensionActivationRule的设置为Dictionary，添加以下内容，扩展将仅支持最多5张图片，不支持URL和视频分享，如分享的对象不满足条件，分享菜单在该扩展会消失。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/37334-16cdd20348eefa59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg" alt="分享类型支持"></p>
+<p>注意：一旦你使用这种方式，没有出现在这里的数据类型将不会被支持，也就意味着该扩展不会出现；如果分享的数据不满足指定的数量限制，扩展也不会出现,<a href="https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/SystemExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW11" target="_blank" rel="external">点击这里查看</a></p>
+<h4 id="Today">Today</h4><p>暂时发现很多App都实现了这个功能，就是系统提供的下来菜单中展示自己app的功能。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//通常插件要消失的时候会调用，系统会在这个时候对插件截图，以便下次启动插件加载之前快速展示</span><br><span class="line">- (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler;</span><br><span class="line"></span><br><span class="line">打开App，通过url携带规范的信息实现app启动的界面，当然也可以通过信息共享的方式来操作（修改缓存区数据）</span><br><span class="line">[self.extensionContext openURL:[NSURL URLWithString:@"appextension://123"]</span><br><span class="line">                 completionHandler:^(BOOL success) &#123;</span><br><span class="line">                     NSLog(@"open url result:%d",success);</span><br><span class="line">                 &#125;];</span><br></pre></td></tr></table></figure></p>
+<h4 id="更多扩展">更多扩展</h4><ul>
+<li><a href="http://www.cnblogs.com/jackma86/p/5018512.html" target="_blank" rel="external">图片扩展</a></li>
+<li><a href="http://www.cocoachina.com/ios/20141015/9918.html" target="_blank" rel="external">App Extension编程指南</a></li>
+<li><a href="http://rannie.github.io/ios/2014/11/26/app-extension-introducing.html" target="_blank" rel="external">App Extension学习笔记</a></li>
+</ul>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+<div class="copyright">
+  <p><span>本文标题:</span><a href="/2016/06/04/iOSExtensionFunction/">iOS Extension的功能点</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 yida 的个人博客">yida</a></p>
+  <p><span>发布时间:</span>2016年6月4日 - 12时06分</p>
+  <p><span>最后更新:</span>2016年6月7日 - 19时06分</p>
+  <p>
+    <span>原始链接:</span><a href="/2016/06/04/iOSExtensionFunction/" title="iOS Extension的功能点">http://yoursite.com/2016/06/04/iOSExtensionFunction/</a>
+    <span class="btn" data-clipboard-text="原文: http://yoursite.com/2016/06/04/iOSExtensionFunction/　　作者: yida" title="点击复制文章链接">
+        <i class="fa fa-clipboard"></i>
+    </span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。</p>
+  <script src="/js/clipboard.min.js"></script>
+  <script> var clipboard = new Clipboard('.btn'); </script>
+</div>
+<style type="text/css">
+  .copyright p .btn {
+    margin-left: 1em;
+  }
+  .copyright:hover p .btn::after {
+    content: "复制"
+  }
+  .copyright p .btn:hover {
+      color: gray;
+      cursor: pointer;
+    };
+</style>
+
+
+
+<nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2016/06/04/iOSshiyongxiaojiqiao/">
+        iOS 实用小技巧说明
+      </a>
+    </div>
+  
+  
+    <div id="article-nav-older" class="article-nav-title">
+      <a href="/2016/03/08/runtime/">
+        Runtime的运行机制
+      </a>
+    </div>
+  
+</nav>
+
+  
+</article>
+
+<!-- 默认显示文章目录，在文章---前输入toc: false关闭目录 -->
+<!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
+<div id="toc" class="toc-article">
+<strong class="toc-title">文章目录</strong>
+<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#总览："><span class="toc-number">1.</span> <span class="toc-text">总览：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#扩展的接入点："><span class="toc-number">1.1.</span> <span class="toc-text">扩展的接入点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#extension"><span class="toc-number">1.2.</span> <span class="toc-text">extension</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#containing_app"><span class="toc-number">1.3.</span> <span class="toc-text">containing app</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#extension和containing_app、host_app"><span class="toc-number">1.4.</span> <span class="toc-text">extension和containing app、host app</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#其他关系"><span class="toc-number">1.5.</span> <span class="toc-text">其他关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三者关系图"><span class="toc-number">1.6.</span> <span class="toc-text">三者关系图</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#不能直接通信"><span class="toc-number">1.6.1.</span> <span class="toc-text">不能直接通信</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#可以共享Shared_resources"><span class="toc-number">1.6.2.</span> <span class="toc-text">可以共享Shared resources</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#containing_app能够控制extension的出现和隐藏"><span class="toc-number">1.6.3.</span> <span class="toc-text">containing app能够控制extension的出现和隐藏</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#App_Groups"><span class="toc-number">2.</span> <span class="toc-text">App Groups</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#extension和containing_app代码共享"><span class="toc-number">3.</span> <span class="toc-text">extension和containing app代码共享</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#copy_framework到App_Groups"><span class="toc-number">3.1.</span> <span class="toc-text">copy framework到App Groups</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生命周期"><span class="toc-number">4.</span> <span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图片编辑"><span class="toc-number">5.</span> <span class="toc-text">图片编辑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Today"><span class="toc-number">6.</span> <span class="toc-text">Today</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更多扩展"><span class="toc-number">7.</span> <span class="toc-text">更多扩展</span></a></li></ol>
+</div>
+<style type="text/css">
+  .left-col .switch-btn {
+    display: none;
+  }
+  .left-col .switch-area {
+    display: none;
+  }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script type="text/javascript">
+  var toc_button= document.getElementById("tocButton");
+  var toc_div= document.getElementById("toc");
+  /* Show or hide toc when click on tocButton.
+  通过点击设置的按钮显示或者隐藏文章目录.*/
+  toc_button.onclick=function(){
+  if(toc_div.style.display=="none"){
+  toc_div.style.display="block";
+  toc_button.value="隐藏目录";
+  document.getElementById("switch-btn").style.display="none";
+  document.getElementById("switch-area").style.display="none";
+  }
+  else{
+  toc_div.style.display="none";
+  toc_button.value="显示目录";
+  document.getElementById("switch-btn").style.display="block";
+  document.getElementById("switch-area").style.display="block";
+  }
+  }
+</script>
+
+
+<div class="share">
+	<div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+	</div>
+	<script>
+	window._bd_share_config={
+		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+</div>
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    </div>
+
+
+  
+  
+    
+    <div  class="post-nav-button">
+    <a href="/2016/06/04/iOSshiyongxiaojiqiao/" title="上一篇: iOS 实用小技巧说明">
+    <i class="fa fa-angle-left"></i>
+    </a>
+    <a href="/2016/03/08/runtime/" title="下一篇: Runtime的运行机制">
+    <i class="fa fa-angle-right"></i>
+    </a>
+    </div>
+  
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2016 yida
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+        </div>
+    </div>
+    <div class="visit">
+      <span id="busuanzi_container_site_pv" style='display:none'>
+        <span id="site-visit" >本站到访数: 
+        <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </span>
+      <span id="busuanzi_container_page_pv" style='display:none'>
+        <span id="page-visit">, 本页阅读量: 
+        <span id="busuanzi_value_page_pv"></span>
+        </span>
+      </span>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  var backgroundList = ["url(/background/bg-1.jpg)", "url(/background/bg-2.jpg)","url(/background/bg-3.jpg)","url(/background/bg-4.jpg)","url(/background/bg-5.jpg)"];
+  var background = Math.floor(Math.random() * backgroundList.length);
+  $("body").css({"background": backgroundList[background], "background-attachment": "fixed", "background-size": "cover"});
+</script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

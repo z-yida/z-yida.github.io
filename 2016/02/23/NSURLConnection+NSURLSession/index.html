@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>从NSURLConnection到NSURLSession | yida&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="iOS 7 和 Mac OS X 10.9 Mavericks 中一个显著的变化就是对 Foundation URL 加载系统的彻底重构。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从NSURLConnection到NSURLSession">
+<meta property="og:url" content="http://yoursite.com/2016/02/23/NSURLConnection+NSURLSession/index.html">
+<meta property="og:site_name" content="yida's blog">
+<meta property="og:description" content="iOS 7 和 Mac OS X 10.9 Mavericks 中一个显著的变化就是对 Foundation URL 加载系统的彻底重构。">
+<meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/NSURLSession.png">
+<meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/operationQueue_image_classes.png">
+<meta property="og:image" content="http://cdn.cocimg.com/cms/uploads/allimg/140829/4196_140829094950_1.jpg">
+<meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/httprequestHeader.png">
+<meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/afmultipartbodystream.png">
+<meta property="og:updated_time" content="2016-02-25T01:48:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从NSURLConnection到NSURLSession">
+<meta name="twitter:description" content="iOS 7 和 Mac OS X 10.9 Mavericks 中一个显著的变化就是对 Foundation URL 加载系统的彻底重构。">
+  
+    <link rel="alternative" href="/atom.xml" title="yida&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/yida_pic.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">yida</a></h1>
+		</hgroup>
+
+		
+		
+		<form><input type="text" class="search" placeholder=" Search..."></form>
+				
+
+
+		
+			<div id="switch-btn" class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div id="switch-area" class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/iOS/">iOS技术文档</a></li>
+				        
+							<li><a href="/categories/financial">金融文档</a></li>
+				        
+							<li><a href="/categories/introduction">随笔</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="Email"><a class="Email" target="_blank" href="/yida9623@126.com" title="Email"></a></li>
+					        
+						</ul>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/iOS/" style="font-size: 10px;">iOS</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">专注于前端</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">yida</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img lazy-src="/img/yida_pic.png" class="js-avatar">
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">yida</a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/iOS/">iOS技术文档</a></li>
+		        
+					<li><a href="/categories/financial">金融文档</a></li>
+		        
+					<li><a href="/categories/introduction">随笔</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="Email"><a class="Email" target="_blank" href="/yida9623@126.com" title="Email"></a></li>
+					        
+						</ul>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-NSURLConnection+NSURLSession" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/23/NSURLConnection+NSURLSession/" class="article-date">
+  	<time datetime="2016-02-23T05:45:12.000Z" itemprop="datePublished">2016-02-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      从NSURLConnection到NSURLSession
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/iOS/">iOS</a>
+	</div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>iOS 7 和 Mac OS X 10.9 Mavericks 中一个显著的变化就是对 Foundation URL 加载系统的彻底重构。</p>
+<a id="more"></a>
+<p>现在已经有人在深入苹果的网络层基础架构的地方做研究了，所以我想是时候来分享一些对于我对于这些新的 API 的看法和心得了，新的 API 将如何影响我们编写程序，以及它们对于 API 设计理念的影响。</p>
+<h3 id="网络基础概念">网络基础概念</h3><h4 id="NSURLConnection">NSURLConnection</h4><h5 id="NSURLConnection基础介绍">NSURLConnection基础介绍</h5><p><code>NSURLConnection</code> 作为 Core Foundation / CFNetwork 框架的 API 之上的一个抽象，在 2003 年，随着第一版的 Safari 的发布就发布了。NSURLConnection 这个名字，实际上是指代的 Foundation 框架的 URL 加载系统中一系列有关联的组件：NSURLRequest、NSURLResponse、NSURLProtocol、 NSURLCache、 NSHTTPCookieStorage、NSURLCredentialStorage 以及同名类 NSURLConnection。</p>
+<p>NSURLConnection 作为 Core Foundation / CFNetwork 框架的 API 之上的一个抽象，在 2003 年，随着第一版的 Safari 的发布就发布了。<code>NSURLConnection</code> 这个名字，实际上是指代的 Foundation 框架的 URL 加载系统中一系列有关联的组件：<code>NSURLRequest</code>、<code>NSURLResponse</code>、<code>NSURLProtocol</code>、 <code>NSURLCache</code>、 <code>NSHTTPCookieStorage</code>、<code>NSURLCredentialStorage</code> 以及同名类 <code>NSURLConnection</code>。</p>
+<p>NSURLRequest 被传递给 NSURLConnection。被委托对象（遵守以前的非正式协议 <nsurlconnectiondelegate> 和 <nsurlconnectiondatadelegate>）异步地返回一个 NSURLResponse 以及包含服务器返回信息的 NSData。</nsurlconnectiondatadelegate></nsurlconnectiondelegate></p>
+<p>在一个请求被发送到服务器之前，系统会先查询共享的缓存信息，然后根据策略（policy）以及可用性（availability）的不同，一个已经被缓存的响应可能会被立即返回。如果没有缓存的响应可用，则这个请求将根据我们指定的策略来缓存它的响应以便将来的请求可以使用。</p>
+<p>在把请求发送给服务器的过程中，服务器可能会发出鉴权查询（authentication challenge），这可以由共享的 cookie 或机密存储（credential storage）来自动响应，或者由被委托对象来响应。发送中的请求也可以被注册的 NSURLProtocol 对象所拦截，以便在必要的时候无缝地改变其加载行为。</p>
+<h5 id="关于NSConnection的常用代理">关于NSConnection的常用代理</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">NSURLConnectionDelegate</span><br><span class="line">- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//关于鉴权这里在了解</span><br><span class="line">- (void)connection:(NSURLConnection *)connection</span><br><span class="line">willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (BOOL)connectionShouldUseCredentialStorage:(NSURLConnection __unused *)connection &#123;</span><br><span class="line">    return self.shouldUseCredentialStorage;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#pragma mark - NSURLConnectionDataDelegate</span><br><span class="line">- (NSURLRequest *)connection:(NSURLConnection *)connection</span><br><span class="line">             willSendRequest:(NSURLRequest *)request</span><br><span class="line">            redirectResponse:(NSURLResponse *)redirectResponse</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)connection:(NSURLConnection __unused *)connection</span><br><span class="line">   didSendBodyData:(NSInteger)bytesWritten</span><br><span class="line"> totalBytesWritten:(NSInteger)totalBytesWritten</span><br><span class="line">totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)connection:(NSURLConnection __unused *)connection</span><br><span class="line">didReceiveResponse:(NSURLResponse *)response</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)connection:(NSURLConnection __unused *)connection</span><br><span class="line">    didReceiveData:(NSData *)data</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)connectionDidFinishLoading:(NSURLConnection __unused *)connection &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)connection:(NSURLConnection __unused *)connection</span><br><span class="line">  didFailWithError:(NSError *)error</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSCachedURLResponse *)connection:(NSURLConnection *)connection</span><br><span class="line">                  willCacheResponse:(NSCachedURLResponse *)cachedResponse</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不管怎样，NSURLConnection 作为网络基础架构，已经服务了成千上万的 iOS 和 Mac OS 程序，并且做的还算相当不错。但是这些年，一些用例——尤其是在 iPhone 和 iPad 上面——已经对 NSURLConnection 的几个核心概念提出了挑战，让苹果有理由对它进行重构。</p>
+<h4 id="NSURLSession">NSURLSession</h4><h5 id="区别">区别</h5><p>和NSURLConnection 一样，NSURLSession 指的也不仅是同名类 NSURLSession，还包括一系列相互关联的类。NSURLSession 包括了与之前相同的组件，NSURLRequest 与 NSURLCache，但是把 NSURLConnection 替换成了 NSURLSession、NSURLSessionConfiguration 以及 NSURLSessionTask 的 3 个子类：NSURLSessionDataTask，NSURLSessionUploadTask，NSURLSessionDownloadTask。</p>
+<p>与 NSURLConnection 相比，NSURLsession 最直接的改进就是可以配置每个 session 的缓存，协议，cookie，以及证书策略（credential policy），甚至跨程序共享这些信息。这将允许程序和网络基础框架之间相互独立，不会发生干扰。每个 NSURLSession 对象都由一个 NSURLSessionConfiguration 对象来进行初始化，后者指定了刚才提到的那些策略以及一些用来增强移动设备上性能的新选项。</p>
+<p>NSURLSession 中另一大块就是 session task。它负责处理数据的加载以及文件和数据在客户端与服务端之间的上传和下载。NSURLSessionTask 与 NSURLConnection 最大的相似之处在于它也负责数据的加载，最大的不同之处在于所有的 task 共享其创造者 NSURLSession 这一公共委托者（common delegate）。</p>
+<p>NSURLsessionTask 是一个抽象类，其下有 3 个实体子类可以直接使用：NSURLSessionDataTask、NSURLSessionUploadTask、NSURLSessionDownloadTask。这 3 个子类封装了现代程序三个最基本的网络任务：获取数据，比如 JSON 或者 XML，上传文件和下载文件。<br><img src="http://7xnx15.com1.z0.glb.clouddn.com/NSURLSession.png" alt=""><br>当一个 NSURLSessionDataTask 完成时，它会带有相关联的数据，而一个 NSURLSessionDownloadTask 任务结束时，它会带回已下载文件的一个临时的文件路径。因为一般来说，服务端对于一个上传任务的响应也会有相关数据返回，所以 NSURLSessionUploadTask 继承自 NSURLSessionDataTask。</p>
+<p>所有的 task 都是可以取消，暂停或者恢复的。当一个 download task 取消时，可以通过选项来创建一个恢复数据（resume data），然后可以传递给下一次新创建的 download task，以便继续之前的下载。</p>
+<p>不同于直接使用 alloc-init 初始化方法，task 是由一个 NSURLSession 创建的。每个 task 的构造方法都对应有或者没有 completionHandler 这个 block 的两个版本，例如：有这样两个构造方法 –dataTaskWithRequest: 和 –dataTaskWithRequest:completionHandler:。这与 NSURLConnection 的 -sendAsynchronousRequest:queue:completionHandler: 方法类似，通过指定 completionHandler 这个 block 将创建一个隐式的 delegate，来替代该 task 原来的 delegate——session。对于需要 override 原有 session task 的 delegate 的默认行为的情况，我们需要使用这种不带 completionHandler 的版本。</p>
+<h5 id="NSURLSessionTask_的工厂方法">NSURLSessionTask 的工厂方法</h5><p>在 iOS 5 中，NSURLConnection 添加了 sendAsynchronousRequest:queue:completionHandler: 这一方法，对于一次性使用的 request， 大大地简化代码，同时它也是sendSynchronousRequest:returningResponse:error: 这个方法的异步替代品：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NSURL *URL = [NSURL URLWithString:@"http://example.com"];</span><br><span class="line">NSURLRequest *request = [NSURLRequest requestWithURL:URL];</span><br><span class="line">[NSURLConnection sendAsynchronousRequest:request</span><br><span class="line">                                   queue:[NSOperationQueue mainQueue]</span><br><span class="line">                       completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) &#123;</span><br><span class="line">    // ...</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<p>NSURLSession 在 task 的构造方法上延续了这一模式。不同的是，这里不会立即运行 task，而是将该 task 对象先返回，允许我们进一步的配置，然后可以使用 resume 方法来让它开始运行。</p>
+<h5 id="Task">Task</h5><h6 id="Data_task">Data task</h6><p>Data task 可以通过 NSURL 或 NSURLRequest 创建（使用前者相当于是使用一个对于该 URL 进行标准 GET 请求的 NSURLRequest，这是一种快捷方法）：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">NSURL *URL = [NSURL URLWithString:@"http://example.com"];</span><br><span class="line">NSURLRequest *request = [NSURLRequest requestWithURL:URL];</span><br><span class="line"></span><br><span class="line">NSURLSession *session = [NSURLSession sharedSession];</span><br><span class="line">NSURLSessionDataTask *task = [session dataTaskWithRequest:request</span><br><span class="line">                                        completionHandler:</span><br><span class="line">    ^(NSData *data, NSURLResponse *response, NSError *error) &#123;</span><br><span class="line">        // ...</span><br><span class="line">    &#125;];</span><br><span class="line">[task resume];</span><br></pre></td></tr></table></figure></p>
+<h6 id="Upload_task">Upload task</h6><p>Upload task 的创建需要使用一个 request，另外加上一个要上传的 NSData 对象或者是一个本地文件的路径对应的 NSURL：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSURL *URL = [NSURL URLWithString:@"http://example.com/upload"];</span><br><span class="line">NSURLRequest *request = [NSURLRequest requestWithURL:URL];</span><br><span class="line">NSData *data = ...;</span><br><span class="line"></span><br><span class="line">NSURLSession *session = [NSURLSession sharedSession];</span><br><span class="line">NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request</span><br><span class="line">                                                           fromData:data</span><br><span class="line">                                                  completionHandler:</span><br><span class="line">    ^(NSData *data, NSURLResponse *response, NSError *error) &#123;</span><br><span class="line">        // ...</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">[uploadTask resume];</span><br></pre></td></tr></table></figure>
+<h6 id="Download_task">Download task</h6><p>Download task 也需要一个 request，不同之处在于 completionHandler 这个 block。Data task 和 upload task 会在任务完成时一次性返回，但是 Download task 是将数据一点点地写入本地的临时文件。所以在 completionHandler 这个 block 里，我们需要把文件从一个临时地址移动到一个永久的地址保存起来：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> NSURL *URL = [NSURL URLWithString:@"http://example.com/file.zip"];</span><br><span class="line"> NSURLRequest *request = [NSURLRequest requestWithURL:URL];</span><br><span class="line"></span><br><span class="line"> NSURLSession *session = [NSURLSession sharedSession];</span><br><span class="line"> NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithRequest:request</span><br><span class="line">                                                         completionHandler:</span><br><span class="line">    ^(NSURL *location, NSURLResponse *response, NSError *error) &#123;</span><br><span class="line">        NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];</span><br><span class="line">        NSURL *documentsDirectoryURL = [NSURL fileURLWithPath:documentsPath];</span><br><span class="line">        NSURL *newFileLocation = [documentsDirectoryURL URLByAppendingPathComponent:[[response URL] lastPathComponent]];</span><br><span class="line">        [[NSFileManager defaultManager] copyItemAtURL:location toURL:newFileLocation error:nil];</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">[downloadTask resume];</span><br><span class="line"></span><br><span class="line">关于matt的看法</span><br><span class="line">NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithRequest:request completionHandler:</span><br><span class="line">    ^(NSURL *location, NSURLResponse *response, NSError *error) &#123;</span><br><span class="line">        NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];</span><br><span class="line">        NSURL *documentsDirectoryURL = [NSURL fileURLWithPath:documentsPath];</span><br><span class="line">        NSURL *documentURL = [documentsDirectoryURL URLByAppendingPathComponent:[response</span><br><span class="line">suggestedFilename]];</span><br><span class="line">        [[NSFileManager defaultManager] moveItemAtURL:location</span><br><span class="line">                                                toURL:documentURL</span><br><span class="line">                                                error:nil];</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure></p>
+<p>NSURLSession 既拥有 seesion 的 delegate 方法，又拥有 task 的 delegate 方法用来处理鉴权查询。session 的 delegate 方法处理连接层的问题，诸如服务器信任，客户端证书的评估，NTLM 和 Kerberos 协议这类问题，而 task 的 delegate 则处理以网络请求为基础的问题，如 Basic，Digest，以及代理身份验证（Proxy authentication）等。</p>
+<p>在 NSURLConnection 中有两个 delegate 方法可以表明一个网络请求已经结束：NSURLConnectionDataDelegate 中的 -connectionDidFinishLoading: 和 NSURLConnectionDelegate 中的 -connection:didFailWithError:，而在 NSURLSession 中改为一个 delegate 方法：NSURLSessionTaskDelegate 的 -URLSession:task:didCompleteWithError:</p>
+<p>NSURLSession 中表示传输多少字节的参数类型现在改为 int64_t，以前在 NSURLConnection 中相应的参数的类型是 long long。</p>
+<p>由于增加了 completionHandler: 这个 block 作为参数，NSURLSession 实际上给 Foundation 框架引入了一种全新的模式。这种模式允许 delegate 方法可以安全地在主线程与运行，而不会阻塞主线程；Delgate 只需要简单地调用 dispatch_async 就可以切换到后台进行相关的操作，然后在操作完成时调用 completionHandler 即可。同时，它还可以有效地拥有多个返回值，而不需要我们使用笨拙的参数指针。以 NSURLSessionTaskDelegate 的 -URLSession:task:didReceiveChallenge:completionHandler: 方法来举例，completionHandler 接受两个参数：NSURLSessionAuthChallengeDisposition 和 NSURLCredential，前者为应对鉴权查询的策略，后者为需要使用的证书（仅当前者——应对鉴权查询的策略为使用证书，即 NSURLSessionAuthChallengeUseCredential 时有效，否则该参数为 NULL）</p>
+<h5 id="NSURLSessionConfiguration">NSURLSessionConfiguration</h5><p>NSURLSessionConfiguration 对象用于对 NSURLSession 对象进行初始化。NSURLSessionConfiguration 对以前 NSMutableURLRequest 所提供的网络请求层的设置选项进行了扩充，提供给我们相当大的灵活性和控制权。从指定可用网络，到 cookie，安全性，缓存策略，再到使用自定义协议，启动事件的设置，以及用于移动设备优化的几个新属性，你会发现使用 NSURLSessionConfiguration 可以找到几乎任何你想要进行配置的选项。</p>
+<p>NSURLSession 在初始化时会把配置它的 NSURLSessionConfiguration 对象进行一次 copy，并保存到自己的 configuration 属性中，而且这个属性是只读的。因此之后再修改最初配置 session 的那个 configuration 对象对于 session 是没有影响的。也就是说，configuration 只在初始化时被读取一次，之后都是不会变化的。</p>
+<h5 id="NSURLSessionConfiguration_的工厂方法">NSURLSessionConfiguration 的工厂方法</h5><p>NSURLSessionConfiguration 有三个类工厂方法，这很好地说明了 NSURLSession 设计时所考虑的不同的使用场景。</p>
+<p>+defaultSessionConfiguration 返回一个标准的 configuration，这个配置实际上与 NSURLConnection 的网络堆栈（networking stack）是一样的，具有相同的共享 NSHTTPCookieStorage，共享 NSURLCache 和共享 NSURLCredentialStorage。</p>
+<p>+ephemeralSessionConfiguration 返回一个预设配置，这个配置中不会对缓存，Cookie 和证书进行持久性的存储。这对于实现像秘密浏览这种功能来说是很理想的。</p>
+<p>+backgroundSessionConfiguration:(NSString *)identifier 的独特之处在于，它会创建一个后台 session。后台 session 不同于常规的，普通的 session，它甚至可以在应用程序挂起，退出或者崩溃的情况下运行上传和下载任务。初始化时指定的标识符，被用于向任何可能在进程外恢复后台传输的守护进程（daemon）提供上下文。</p>
+<h5 id="配置属性">配置属性</h5><p>NSURLSessionConfiguration 拥有 20 个配置属性。熟练掌握这些配置属性的用处，可以让应用程序充分地利用其网络环境。</p>
+<h5 id="基本配置">基本配置</h5><p>HTTPAdditionalHeaders 指定了一组默认的可以设置出站请求（outbound request）的数据头。这对于跨 session 共享信息，如内容类型，语言，用户代理和身份认证，是很有用的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">NSString *userPasswordString = [NSString stringWithFormat:@"%@:%@", user, password];</span><br><span class="line">NSData * userPasswordData = [userPasswordString dataUsingEncoding:NSUTF8StringEncoding];</span><br><span class="line">NSString *base64EncodedCredential = [userPasswordData base64EncodedStringWithOptions:0];</span><br><span class="line">NSString *authString = [NSString stringWithFormat:@"Basic %@", base64EncodedCredential];</span><br><span class="line">NSString *userAgentString = @"AppName/com.example.app (iPhone 5s; iOS 7.0.2; Scale/2.0)";</span><br><span class="line"></span><br><span class="line">configuration.HTTPAdditionalHeaders = @&#123;@"Accept": @"application/json",</span><br><span class="line">                                        @"Accept-Language": @"en",</span><br><span class="line">                                        @"Authorization": authString,</span><br><span class="line">                                        @"User-Agent": userAgentString&#125;;</span><br></pre></td></tr></table></figure>
+<p>networkServiceType 对标准的网络流量，网络电话，语音，视频，以及由一个后台进程使用的流量进行了区分。大多数应用程序都不需要设置这个。</p>
+<p>allowsCellularAccess 和 discretionary 被用于节省通过蜂窝网络连接的带宽。对于后台传输的情况，推荐大家使用 discretionary 这个属性，而不是 allowsCellularAccess，因为前者会把 WiFi 和电源的可用性考虑在内。</p>
+<p>timeoutIntervalForRequest 和 timeoutIntervalForResource 分别指定了对于请求和资源的超时间隔。许多开发人员试图使用 timeoutInterval 去限制发送请求的总时间，但其实它真正的含义是：分组（packet）之间的时间。实际上我们应该使用 timeoutIntervalForResource 来规定整体超时的总时间，但应该只将其用于后台传输，而不是用户实际上可能想要去等待的任何东西。</p>
+<p>HTTPMaximumConnectionsPerHost 是 Foundation 框架中 URL 加载系统的一个新的配置选项。它曾经被 NSURLConnection 用于管理私有的连接池。现在有了 NSURLSession，开发者可以在需要时限制连接到特定主机的数量。</p>
+<p>HTTPShouldUsePipelining 这个属性在 NSMutableURLRequest 下也有，它可以被用于开启 HTTP 管线化（HTTP pipelining），这可以显着降低请求的加载时间，但是由于没有被服务器广泛支持，默认是禁用的。</p>
+<p>sessionSendsLaunchEvents 是另一个新的属性，该属性指定该 session 是否应该从后台启动。</p>
+<p>connectionProxyDictionary 指定了 session 连接中的代理服务器。同样地，大多数面向消费者的应用程序都不需要代理，所以基本上不需要配置这个属性。</p>
+<h5 id="cookie策略">cookie策略</h5><p>HTTPCookieStorage 存储了 session 所使用的 cookie。默认情况下会使用 NSHTTPCookieShorage 的 +sharedHTTPCookieStorage 这个单例对象，这与 NSURLConnection 是相同的。</p>
+<p>HTTPCookieAcceptPolicy 决定了什么情况下 session 应该接受从服务器发出的 cookie。</p>
+<p>HTTPShouldSetCookies 指定了请求是否应该使用 session 存储的 cookie，即 HTTPCookieSorage 属性的值。</p>
+<h5 id="安全策略">安全策略</h5><p>URLCredentialStorage 存储了 session 所使用的证书。默认情况下会使用 NSURLCredentialStorage 的 +sharedCredentialStorage 这个单例对象，这与 NSURLConnection 是相同的。</p>
+<p>TLSMaximumSupportedProtocol 和 TLSMinimumSupportedProtocol 确定 session 是否支持 SSL 协议。</p>
+<h5 id="缓存策略">缓存策略</h5><p>URLCache 是 session 使用的缓存。默认情况下会使用 NSURLCache 的 +sharedURLCache 这个单例对象，这与 NSURLConnection 是相同的。</p>
+<p>requestCachePolicy specifies when a cached response should be returned for a request. This is equivalent to NSURLRequest -cachePolicy.</p>
+<p>requestCachePolicy 指定了一个请求的缓存响应应该在什么时候返回。这相当于 NSURLRequest 的 -cachePolicy 方法。</p>
+<h5 id="自定义的协议">自定义的协议</h5><p>protocolClasses 用来配置特定某个 session 所使用的自定义协议（该协议是 NSURLProtocol 的子类）的数组。</p>
+<h3 id="关于AFN的代码解析：">关于AFN的代码解析：</h3><p>AFNetworking代码中有一些常用技巧，先说明下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#pragma clang diagnostic push</span><br><span class="line">#pragma clang diagnostic ignored "-Wgnu"</span><br><span class="line">#pragma clang diagnostic pop</span><br></pre></td></tr></table></figure></p>
+<p>表示在这个区间里忽略一些特定的clang的编译警告，因为AFNetworking作为一个库被其他项目引用，所以不能全局忽略clang的一些警告，只能在有需要的时候局部这样做，作者喜欢用?:符号，所以经常见忽略-Wgnu警告的写法,<a href="http://nshipster.com/clang-diagnostics/" target="_blank" rel="external">详见这里</a></p>
+<h4 id="dispatch_once">dispatch_once</h4><p>为了保证线程安全，所有单例都用了dispatch_once生成，保证只执行一次，这也是iOS开发常用的技巧：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">static dispatch_queue_t url_request_operation_completion_queue() &#123;</span><br><span class="line">    static dispatch_queue_t af_url_request_operation_completion_queue;</span><br><span class="line">    static dispatch_once_t onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">        af_url_request_operation_completion_queue = dispatch_queue_create("com.alamofire.networking.operation.queue",   DISPATCH_QUEUE_CONCURRENT );</span><br><span class="line">    &#125;);</span><br><span class="line">    return af_url_request_operation_completion_queue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="weak_&amp;_strong_self">weak &amp; strong self</h4><p>常看到一个block要使用self，会处理在外部声明一个weak变量指向self,在block里又声明一个strong变量指向weakSelf;<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">__weak __typeof(self)weakSelf = self;</span><br><span class="line">self.backgroundTaskIdentifier = [application beginBackgroundTaskWithExpirationHandler:^&#123;</span><br><span class="line">    __strong __typeof(weakSelf)strongSelf = weakSelf;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<h4 id="线程">线程</h4><p>先来看看 NSURLConnection 发送请求时的线程情况，NSURLConnection 是被设计成异步发送的，调用了start方法后，NSURLConnection 会新建一些线程用底层的 CFSocket 去发送和接收请求，在发送和接收的一些事件发生后通知原来线程的Runloop去回调事件。</p>
+<p>NSURLConnection 的同步方法 sendSynchronousRequest 方法也是基于异步的，同样要在其他线程去处理请求的发送和接收，只是同步方法会手动block主线程，发送状态的通知也不是通过 RunLoop 进行。</p>
+<h5 id="使用NSURLConnection有几种选择：">使用NSURLConnection有几种选择：</h5><h6 id="主线程调用异步接口，会有一个Runloop相关的问题：">主线程调用异步接口，会有一个Runloop相关的问题：</h6><p>当在主线程调用 [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES] 时，请求发出，侦听任务会加入到主线程的 Runloop 下，RunloopMode 会默认为 NSDefaultRunLoopMode。这表明只有当前线程的Runloop 处于 NSDefaultRunLoopMode 时，这个任务才会被执行。但当用户滚动 tableview 或 scrollview 时，主线程的 Runloop 是处于 NSEventTrackingRunLoopMode 模式下的，不会执行 NSDefaultRunLoopMode 的任务，所以会出现一个问题，请求发出后，如果用户一直在操作UI上下滑动屏幕，那在滑动结束前是不会执行回调函数的，只有在滑动结束，RunloopMode 切回 NSDefaultRunLoopMode，才会执行回调函数。苹果一直把动画效果性能放在第一位，估计这也是苹果提升UI动画性能的手段之一。</p>
+<p>所以若要在主线程使用 NSURLConnection 异步接口，需要手动把 RunloopMode 设为 NSRunLoopCommonModes。这个 mode 意思是无论当前 Runloop 处于什么状态，都执行这个任务。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];</span><br><span class="line">[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];</span><br><span class="line">[connection start];</span><br></pre></td></tr></table></figure></p>
+<h6 id="子线程调用同步接口">子线程调用同步接口</h6><p>若在子线程调用同步接口，一条线程只能处理一个请求，因为请求一发出去线程就阻塞住等待回调，需要给每个请求新建一个线程，这是很浪费的，这种方式唯一的好处应该是易于控制请求并发的数量。</p>
+<h6 id="子线程调用异步接口：">子线程调用异步接口：</h6><p>子线程调用异步接口，子线程需要有 Runloop 去接收异步回调事件，这里也可以每个请求都新建一条带有 Runloop 的线程去侦听回调，但这一点好处都没有，既然是异步回调，除了处理回调内容，其他时间线程都是空闲可利用的，所有请求共用一个响应的线程就够了。</p>
+<p>AFNetworking 用的就是第三种方式，创建了一条常驻线程专门处理所有请求的回调事件，这个模型跟 nodejs 有点类似。网络请求回调处理完，组装好数据后再给上层调用者回调，这时候回调是抛回主线程的，因为主线程是最安全的，使用者可能会在回调中更新UI，在子线程更新UI会导致各种问题，一般使用者也可以不需要关心线程问题。</p>
+<p>以下是相关线程大致的关系，实际上多个 NSURLConnection 会共用一个 NSURLConnectionLoader 线程，这里就不细化了，除了处理 socket 的 CFSocket 线程，还有一些 Javascript:Core 的线程，目前不清楚作用，归为 NSURLConnection里的其他线程。因为 NSURLConnection 是系统控件，每个iOS版本可能都有不一样，可以先把 NSURLConnection 当成一个黑盒，只管它的 start 和 callback 就行了。如果使用 AFHttpRequestOperationManager 的接口发送请求，这些请求会统一在一个 NSOperationQueue 里去发，所以多了上面 NSOperationQueue 的一个线程。</p>
+<p><img src="http://7xnx15.com1.z0.glb.clouddn.com/operationQueue_image_classes.png" alt="NSOperation"></p>
+<p>相关代码：相关代码：-networkRequestThread:, -start:, -operationDidStart:。</p>
+<h4 id="状态机">状态机</h4><p>继承 NSOperation 有个很麻烦的东西要处理，就是改变状态时需要发 KVO 通知，否则这个类加入 NSOperationQueue 不可用了。 NSOperationQueue 是用 KVO 方式侦听 NSOperation 状态的改变，以判断这个任务当前是否已完成，完成的任务需要在队列中除去并释放。</p>
+<p>AFURLConnectionOperation 对此做了个状态机，统一搞定状态切换以及发 KVO 通知的问题，内部要改变状态时，就只需要类似 self.state = AFOperationReadyState 的调用而不需要做其他了，状态改变的 KVO 通知在 setState 里发出。</p>
+<p>总的来说状态管理相关代码就三部分，一是限制一个状态可以切换到其他哪些状态，避免状态切换混乱，二是状态 Enum值 与 NSOperation 四个状态方法的对应，三是在 setState 时统一发 KVO 通知。详见代码注释。</p>
+<p>相关代码：AFKeyPathFromOperationState, AFStateTransitionIsValid, -setState:, -isPaused:, -isReady:, -isExecuting:, -isFinished:.</p>
+<h4 id="NSURLConnectionDelegate">NSURLConnectionDelegate</h4><p>处理 NSURLConnection Delegate 的内容不多，代码也是按请求回调的顺序排列下去，十分易读，主要流程就是接收到响应的时候打开 outputStream，接着有数据过来就往 outputStream 写，在上传/接收数据过程中会回调上层传进来的相应的callback，在请求完成回调到 connectionDidFinishLoading 时，关闭 outputStream，用 outputStream 组装 responseData 作为接收到的数据，把 NSOperation 状态设为 finished，表示任务完成，NSOperation 会自动调用 completeBlock，再回调到上层。</p>
+<h4 id="setCompleteBlock">setCompleteBlock</h4><p>NSOperation 在 iOS4.0 以后提供了个接口 setCompletionBlock，可以传入一个 block 作为任务执行完成时（state状态机变为finished时）的回调，AFNetworking直接用了这个接口，并通过重写加了几个功能：</p>
+<h5 id="消除循环引用">消除循环引用</h5><p>在 NSOperation 的实现里，completionBlock 是 NSOperation 对象的一个成员，NSOperation 对象持有着 completionBlock，若传进来的 block 用到了 NSOperation 对象，或者 block 用到的对象持有了这个 NSOperation 对象，就会造成循环引用。这里执行完 block 后调用 [strongSelf setCompletionBlock:nil] 把 completionBlock 设成 nil，手动释放 self(NSOperation对象) 持有的 completionBlock 对象，打破循环引用。</p>
+<p>可以理解成对外保证传进来的block一定会被释放，解决外部使用使很容易出现的因对象关系复杂导致循环引用的问题，让使用者不知道循环引用这个概念都能正确使用。（非常好的解决方式）</p>
+<h5 id="dispatch_group">dispatch_group</h5><p>这里允许用户让所有 operation 的 completionBlock 在一个 group 里执行，但我没看出这样做的作用，若想组装一组请求（见下面的batchOfRequestOperations）也不需要再让completionBlock在group里执行，求解。</p>
+<h5 id="”The_Deallocation_Problem”">”The Deallocation Problem”</h5><p>作者在注释里说这里重写的setCompletionBlock方法解决了”The Deallocation Problem”，实际上并没有。”The Deallocation Problem”简单来说就是不要让UIKit的东西在子线程释放。</p>
+<p>这里如果传进来的block持有了外部的UIViewController或其他UIKit对象（下面暂时称为A对象），并且在请求完成之前其他所有对这个A对象的引用都已经释放了，那么这个completionBlock就是最后一个持有这个A对象的，这个block释放时A对象也会释放。这个block在什么线程释放，A对象就会在什么线程释放。我们看到block释放的地方是url_request_operation_completion_queue()，这是AFNetworking特意生成的子线程，所以按理说A对象是会在子线程释放的，会导致UIKit对象在子线程释放，会有问题。</p>
+<p>但AFNetworking实际用起来却没问题，想了很久不得其解，后来做了实验，<code>发现iOS5以后苹果对UIKit对象的释放做了特殊处理，只要发现在子线程释放这些对象，就自动转到主线程去释放，断点出来是由一个叫_objc_deallocOnMainThreadHelper 的方法做的</code>。如果不是UIKit对象就不会跳到主线程释放。AFNetworking2.0只支持iOS6+，所以没问题。（意思是现在是可以在子线程中释放UIKit资源）<br><img src="http://cdn.cocimg.com/cms/uploads/allimg/140829/4196_140829094950_1.jpg" alt=""></p>
+<p>batchOfRequestOperations<br>这里额外提供了一个便捷接口，可以传入一组请求，在所有请求完成后回调 complionBlock，在每一个请求完成时回调 progressBlock 通知外面有多少个请求已完成。详情参见代码注释，这里需要说明下 dispatch_group_enter 和dispatch_group_leave 的使用，这两个方法用于把一个异步任务加入 group 里。</p>
+<p>一般我们要把一个任务加入到一个Group里是这样子的：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">    block();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这个写法等价于：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dispatch_async(queue, ^&#123;</span><br><span class="line">    dispatch_group_enter(group);</span><br><span class="line">    block()</span><br><span class="line">    dispatch_group_leave(group);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>异步任务回调后才算这个group任务完成，对batchOfRequest的实现来说就是请求完成并回调后，才算这个任务完成。<br>其实这跟retain/release差不多，都是计数，dispatch_group_enter时任务数+1，dispatch_group_leave时任务数-1，任务数为0时执行dispatch_group_notify的内容。<br>相关代码：-batchOfRequestOperations:progressBlock:completionBlock:</p>
+<h4 id="其他">其他</h4><h5 id="锁">锁</h5><p>AFURLConnectionOperation 有一把递归锁，在所有会访问/修改成员变量的对外接口都加了锁，因为这些对外的接口用户是可以在任意线程调用的，对于访问和修改成员变量的接口，必须用锁保证线程安全。</p>
+<h5 id="序列化">序列化</h5><p>AFNetworking 的多数类都支持序列化，但实现的是 NSSecureCoding 的接口，而不是 NSCoding，区别在于解数据时要指定 Class，用 -decodeObjectOfClass:forKey: 方法代替了 -decodeObjectForKey: 。这样做更安全，因为序列化后的数据有可能被篡改，若不指定 Class，-decode 出来的对象可能不是原来的对象，有潜在风险。另外，NSSecureCoding 是 iOS 6 以上才有的。</p>
+<p>里在序列化时保存了当前任务状态，接收的数据等，但回调block是保存不了的，需要在取出来发送时重新设置。可以像下面这样持久化保存和取出任务：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];</span><br><span class="line">NSData *data = [NSKeyedArchiver archivedDataWithRootObject:operation]; </span><br><span class="line"></span><br><span class="line">AFHTTPRequestOperation *operationFromDB = [NSKeyedUnarchiver unarchiveObjectWithData:data];</span><br><span class="line">[operationFromDB start];</span><br></pre></td></tr></table></figure>
+<h5 id="backgroundTask">backgroundTask</h5><p>这里提供了setShouldExecuteAsBackgroundTaskWithExpirationHandler 接口，决定APP进入后台后是否继续发送接收请求，并在后台执行时间超时后取消所有请求。在 dealloc 里需要调用 [application endBackgroundTask:] ，告诉系统这个后台任务已经完成，不然系统会一直让你的APP运行在后台，直到超时。<br>相关代码：-setShouldExecuteAsBackgroundTaskWithExpirationHandler:, -dealloc:</p>
+<h4 id="AFHTTPRequestOperation">AFHTTPRequestOperation</h4><p>AFHTTPRequestOperation 继承了 AFURLConnectionOperation，把它放一起说是因为它没做多少事情，主要多了responseSerializer，暂停下载断点续传，以及提供接口请求成功失败的回调接口 -setCompletionBlockWithSuccess:failure:。详见源码注释。</p>
+<h4 id="AFURLRequestSerialization">AFURLRequestSerialization</h4><p>AFURLRequestSerialization用于帮助构建NSURLRequest，主要做了两个事情：</p>
+<p>1.构建普通请求：格式化请求参数，生成HTTP Header。<br>2.构建multipart请求。</p>
+<p>分别看看它在这两点具体做了什么，怎么做的</p>
+<h5 id="构建普通请求">构建普通请求</h5><h6 id="格式化请求参数">格式化请求参数</h6><p>一般我们请求都会按key=value的方式带上各种参数，GET方法参数直接加在URL上，POST方法放在body上，NSURLRequest没有封装好这个参数的解析，只能我们自己拼好字符串。AFNetworking提供了接口，让参数可以是NSDictionary, NSArray, NSSet这些类型，再由内部解析成字符串后赋给NSURLRequest。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@&#123;</span><br><span class="line">     @"name" : @"bang",</span><br><span class="line">     @"phone": @&#123;@"mobile": @"xx", @"home": @"xx"&#125;,</span><br><span class="line">     @"families": @[@"father", @"mother"],</span><br><span class="line">     @"nums": [NSSet setWithObjects:@"1", @"2", nil]</span><br><span class="line">&#125;</span><br><span class="line">-&gt;</span><br><span class="line">@[</span><br><span class="line">     field: @"name", value: @"bang",</span><br><span class="line">     field: @"phone[mobile]", value: @"xx",</span><br><span class="line">     field: @"phone[home]", value: @"xx",</span><br><span class="line">     field: @"families[]", value: @"father",</span><br><span class="line">     field: @"families[]", value: @"mother",</span><br><span class="line">     field: @"nums", value: @"1",</span><br><span class="line">     field: @"nums", value: @"2",</span><br><span class="line">]</span><br><span class="line">-&gt;</span><br><span class="line">name=bang&amp;phone[mobile]=xx&amp;phone[home]=xx&amp;families[]=father&amp;families[]=mother&amp;nums=1&amp;num=2</span><br></pre></td></tr></table></figure>
+<p>第一部分是用户传进来的数据，支持包含NSArray,NSDictionary,NSSet这三种数据结构。</p>
+<p>第二部分是转换成AFNetworking内自己的数据结构，每一个key-value对都用一个对象AFQueryStringPair表示，作用是最后可以根据不同的字符串编码生成各自的key=value字符串。主要函数是AFQueryStringPairsFromKeyAndValue，详见源码注释。</p>
+<p>第三部分是最后生成NSURLRequest可用的字符串数据，并且对参数进行url编码，在AFQueryStringFromParametersWithEncoding这个函数里。</p>
+<p>最后在把数据赋给NSURLRequest时根据不同的HTTP方法分别处理，对于GET/HEAD/DELETE方法，把参数加到URL后面，对于其他如POST/PUT方法，把数据加到body上，并设好HTTP头，告诉服务端字符串的编码。</p>
+<h5 id="HTTP_Header">HTTP Header</h5><p>AFNetworking帮你组装好了一些HTTP请求头，包括语言Accept-Language，根据 [NSLocale preferredLanguages] 方法读取本地语言，高速服务端自己能接受的语言。还有构建 User-Agent，以及提供Basic Auth 认证接口，帮你把用户名密码做 base64 编码后放入 HTTP 请求头。详见源码注释。</p>
+<p>常见的HTTP头,查看更多<a href="http://kb.cnblogs.com/page/92320/" target="_blank" rel="external">点击这里</a><br><img src="http://7xnx15.com1.z0.glb.clouddn.com/httprequestHeader.png" alt=""></p>
+<h5 id="其他格式化方式">其他格式化方式</h5><p>HTTP请求参数不一定是要key=value形式，可以是任何形式的数据，可以是json格式，苹果的plist格式，二进制protobuf格式等，AFNetworking提供了方法可以很容易扩展支持这些格式，默认就实现了json和plist格式。详见源码的类AFJSONRequestSerializer和AFPropertyListRequestSerializer。</p>
+<h5 id="构建multipart请求">构建multipart请求</h5><p>构建Multipart请求是占篇幅很大的一个功能，AFURLRequestSerialization里2/3的代码都是在做这个事。</p>
+<h6 id="Multipart协议介绍">Multipart协议介绍</h6><p>Multipart是HTTP协议为web表单新增的上传文件的协议，协议文档是rfc1867，它基于HTTP的POST方法，数据同样是放在body上，跟普通POST方法的区别是数据不是key=value形式，key=value形式难以表示文件实体，为此Multipart协议添加了分隔符，有自己的格式结构，大致如下：<br>—AaB03x<br>content-disposition: form-data; name=“name”<br>bang<br>–AaB03x<br>content-disposition: form-data; name=”pic”; filename=“content.txt”<br>Content-Type: text/plain<br>… contents of bang.txt …<br>–AaB03x–</p>
+<p>以上表示数据name=bang以及一个文件，content.txt是文件名，… contents of bang.txt …是文件实体内容。分隔符—AaB03x是可以自定义的，写在HTTP头部里：</p>
+<p>Content-type: multipart/form-data, boundary=AaB03x</p>
+<p>每一个部分都有自己的头部，表明这部分的数据类型以及其他一些参数，例如文件名，普通字段的key。最后一个分隔符会多加两横，表示数据已经结束：—AaB03x—。</p>
+<h6 id="实现">实现</h6><p>接下来说说怎样构造Multipart里的数据，最简单的方式就是直接拼数据，要发送一个文件，就直接把文件所有内容读取出来，再按上述协议加上头部和分隔符，拼接好数据后扔给NSURLRequest的body就可以发送了，很简单。但这样做是不可用的，因为文件可能很大，这样拼数据把整个文件读进内存，很可能把内存撑爆了。</p>
+<p>第二种方法是不把文件读出来，不在内存拼，而是新建一个临时文件，在这个文件上拼接数据，再把文件地址扔给NSURLRequest的bodyStream，这样上传的时候是分片读取这个文件，不会撑爆内存，但这样每次上传都需要新建个临时文件，对这个临时文件的管理也挺麻烦的。</p>
+<p>第三种方法是构建自己的数据结构，只保存要上传的文件地址，边上传边拼数据，上传是分片的，拼数据也是分片的，拼到文件实体部分时直接从原来的文件分片读取。这方法没上述两种的问题，只是实现起来也没上述两种简单，AFNetworking就是实现这第三种方法，而且还更进一步，除了文件，还可以添加多个其他不同类型的数据，包括NSData，和InputStream。</p>
+<p>AFN里multipart请求的使用方式是这样:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];</span><br><span class="line">NSDictionary *parameters = @&#123;@"foo": @"bar"&#125;;</span><br><span class="line">NSURL *filePath = [NSURL fileURLWithPath:@"file://path/to/image.png"];</span><br><span class="line">[manager POST:@"http://example.com/resources.json" parameters:parameters constructingBodyWithBlock:^(id formData) &#123;</span><br><span class="line">    [formData appendPartWithFileURL:filePath name:@"image" error:nil];</span><br><span class="line">&#125; success:^(AFHTTPRequestOperation *operation, id responseObject) &#123;</span><br><span class="line">    NSLog(@"Success: %@", responseObject);</span><br><span class="line">&#125; failure:^(AFHTTPRequestOperation *operation, NSError *error) &#123;</span><br><span class="line">    NSLog(@"Error: %@", error);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<p>这里通过constructingBodyWithBlock向使用者提供了一个AFStreamingMultipartFormData对象，调这个对象的几种append方法就可以添加不同类型的数据，包括FileURL/NSData/NSInputStream，AFStreamingMultipartFormData内部把这些append的数据转成不同类型的 AFHTTPBodyPart，添加到自定义的 AFMultipartBodyStream 里。最后把 AFMultipartBodyStream 赋给原来 NSMutableURLRequest的bodyStream。NSURLConnection 发送请求时会读取这个 bodyStream，在读取数据时会调用这个 bodyStream 的 -read:maxLength: 方法，AFMultipartBodyStream 重写了这个方法，不断读取之前 append进来的 AFHTTPBodyPart 数据直到读完。</p>
+<p>AFHTTPBodyPart 封装了各部分数据的组装和读取，一个 AFHTTPBodyPart 就是一个数据块。实际上三种类型 (FileURL/NSData/NSInputStream) 的数据在 AFHTTPBodyPart 都转成 NSInputStream，读取数据时只需读这个 inputStream。inputStream 只保存了数据的实体，没有包括分隔符和头部，AFHTTPBodyPart 是边读取变拼接数据，用一个状态机确定现在数据读取到哪一部份，以及保存这个状态下已被读取的字节数，以此定位要读的数据位置，详见 AFHTTPBodyPart 的-read:maxLength:方法。</p>
+<p>AFMultipartBodyStream封装了整个multipart数据的读取，主要是根据读取的位置确定现在要读哪一个AFHTTPBodyPart。AFStreamingMultipartFormData对外提供友好的append接口，并把构造好的AFMultipartBodyStream赋回给NSMutableURLRequest，关系大致如下图：<br><img src="http://7xnx15.com1.z0.glb.clouddn.com/afmultipartbodystream.png" alt=""></p>
+<h6 id="NSInputStream子类">NSInputStream子类</h6><p>NSURLRequest 的 setHTTPBodyStream 接受的是一个 NSInputStream* 参数，那我们要自定义inputStream的话，创建一个 NSInputStream 的子类传给它是不是就可以了？实际上不行，这样做后用NSURLRequest 发出请求会导致 crash，提示 [xx _scheduleInCFRunLoop:forMode:]: unrecognized selector。</p>
+<p>这是因为NSURLRequest实际上接受的不是 NSInputStream 对象，而是 CoreFoundation 的 CFReadStreamRef 对象，因为 CFReadStreamRef 和 NSInputStream 是 toll-free bridged，可以自由转换，但CFReadStreamRef 会用到 CFStreamScheduleWithRunLoop 这个方法，当它调用到这个方法时，object-c 的 toll-free bridging 机制会调用 object-c 对象 NSInputStream 的相应函数，这里就调用到了_scheduleInCFRunLoop:forMode:，若不实现这个方法就会crash。详见这篇文章。</p>
+<h4 id="关于证书相关的介绍：">关于证书相关的介绍：</h4><h5 id="证书怎么样验证的，怎能保证中间人不能伪造证书？">证书怎么样验证的，怎能保证中间人不能伪造证书？</h5><p>首先要知道非对称加密算法的特点，非对称加密有一对公钥私钥，用公钥加密的数据只能通过对应的私钥解密，用私钥加密的数据只能通过对应的公钥解密。</p>
+<p>我们来看最简单的情况：一个证书颁发机构(CA)，颁发了一个证书A，服务器用这个证书建立https连接。客户端在信任列表里有这个CA机构的根证书。</p>
+<p>首先CA机构颁发的证书A里包含有证书内容F，以及证书加密内容F1，加密内容F1就是用这个证书机构的私钥对内容F加密的结果。（这中间还有一次hash算法，略过。）</p>
+<p>建立https连接时，服务端返回证书A给客户端，客户端的系统里的CA机构根证书有这个CA机构的公钥，用这个公钥对证书A的加密内容F1解密得 到F2，跟证书A里内容F对比，若相等就通过验证。整个流程大致是：F-&gt;CA私钥加密-&gt;F1-&gt;客户端CA公钥解密-&gt;F。 因为中间人不会有CA机构的私钥，客户端无法通过CA公钥解密，所以伪造的证书肯定无法通过验证。</p>
+<h5 id="什么是SSL_Pinning?">什么是SSL Pinning?</h5><p>可以理解为证书绑定，是指客户端直接保存服务端的证书，建立https连接时直接对比服务端返回的和客户端保存的两个证书是否一样，一样就表明证书 是真的，不再去系统的信任证书机构里寻找验证。这适用于非浏览器应用，因为浏览器跟很多未知服务端打交道，无法把每个服务端的证书都保存到本地，但CS架 构的像手机APP事先已经知道要进行通信的服务端，可以直接在客户端保存这个服务端的证书用于校验。</p>
+<p>为什么直接对比就能保证证书没问题？如果中间人从客户端取出证书，再伪装成服务端跟其他客户端通信，它发送给客户端的这个证书不就能通过验证吗？确 实可以通过验证，但后续的流程走不下去，因为下一步客户端会用证书里的公钥加密，中间人没有这个证书的私钥就解不出内容，也就截获不到数据，这个证书的私 钥只有真正的服务端有，中间人伪造证书主要伪造的是公钥。</p>
+<p>为什么要用SSL  Pinning？正常的验证方式不够吗？如果服务端的证书是从受信任的的CA机构颁发的，验证是没问题的，但CA机构颁发证书比较昂贵，小企业或个人用户 可能会选择自己颁发证书，这样就无法通过系统受信任的CA机构列表验证这个证书的真伪了，所以需要SSL Pinning这样的方式去验证。</p>
+<h5 id="AFSecurityPolicy">AFSecurityPolicy</h5><p>NSURLConnection已经封装了https连接的建立、数据的加密解密功能，我们直接使用NSURLConnection是可以访问 https网站的，但NSURLConnection并没有验证证书是否合法，无法避免中间人攻击。要做到真正安全通讯，需要我们手动去验证服务端返回的 证书，AFSecurityPolicy封装了证书验证的过程，让用户可以轻易使用，除了去系统信任CA机构列表验证，还支持SSL  Pinning方式的验证。使用方法：</p>
+<p>代码详细见这里：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//把服务端证书(需要转换成cer格式)放到APP项目资源里，AFSecurityPolicy会自动寻找根目录下所有cer文件</span><br><span class="line">AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];</span><br><span class="line">securityPolicy.allowInvalidCertifAFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];</span><br><span class="line">icates = YES;</span><br><span class="line">[AFHTTPRequestOperationManager manager].securityPolicy = securityPolicy;</span><br><span class="line">[manager GET:@"https://example.com/" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) &#123;</span><br><span class="line">&#125; failure:^(AFHTTPRequestOperation *operation, NSError *error) &#123;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<h5 id="AFSecurityPolicy分三种验证模式：">AFSecurityPolicy分三种验证模式：</h5><h6 id="AFSSLPinningModelNone">AFSSLPinningModelNone</h6><p>这个模式表示不做SSL pinning，只跟浏览器一样在系统的信任机构列表里验证服务端返回的证书。若证书是信任机构签发的就会通过，若是自己服务器生成的证书，这里是不会通过的。</p>
+<h6 id="AFSSLPinningModeCertificate">AFSSLPinningModeCertificate</h6><p>这个模式表示用证书绑定方式验证证书，需要客户端保存有服务端的证书拷贝，这里验证分两步，第一步验证证书的域名/有效期等信息，第二步是对比服务端返回的证书跟客户端返回的是否一致。</p>
+<p>这里还没弄明白第一步的验证是怎么进行的，代码上跟去系统信任机构列表里验证一样调用了SecTrustEvaluate，只是这里的列表换成了客户端保存的那些证书列表。若要验证这个，是否应该把服务端证书的颁发机构根证书也放到客户端里？</p>
+<h6 id="AFSSLPinningModePublicKey">AFSSLPinningModePublicKey</h6><p>这个模式同样是用证书绑定方式验证，客户端要有服务端的证书拷贝，只是验证时只验证证书里的公钥，不验证证书的有效期等信息。只要公钥是正确的，就能保证通信不会被窃听，因为中间人没有私钥，无法解开通过公钥加密的数据。</p>
+<p>原本链接地址(<a href="http://www.cocoachina.com/ios/20141120/10265.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20141120/10265.html</a>)</p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+<div class="copyright">
+  <p><span>本文标题:</span><a href="/2016/02/23/NSURLConnection+NSURLSession/">从NSURLConnection到NSURLSession</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 yida 的个人博客">yida</a></p>
+  <p><span>发布时间:</span>2016年2月23日 - 13时02分</p>
+  <p><span>最后更新:</span>2016年2月25日 - 09时02分</p>
+  <p>
+    <span>原始链接:</span><a href="/2016/02/23/NSURLConnection+NSURLSession/" title="从NSURLConnection到NSURLSession">http://yoursite.com/2016/02/23/NSURLConnection+NSURLSession/</a>
+    <span class="btn" data-clipboard-text="原文: http://yoursite.com/2016/02/23/NSURLConnection+NSURLSession/　　作者: yida" title="点击复制文章链接">
+        <i class="fa fa-clipboard"></i>
+    </span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。</p>
+  <script src="/js/clipboard.min.js"></script>
+  <script> var clipboard = new Clipboard('.btn'); </script>
+</div>
+<style type="text/css">
+  .copyright p .btn {
+    margin-left: 1em;
+  }
+  .copyright:hover p .btn::after {
+    content: "复制"
+  }
+  .copyright p .btn:hover {
+      color: gray;
+      cursor: pointer;
+    };
+</style>
+
+
+
+<nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2016/03/07/responseStateCode302/">
+        iOS拦截重定向请求（302）的几种方式
+      </a>
+    </div>
+  
+  
+    <div id="article-nav-older" class="article-nav-title">
+      <a href="/2016/02/18/wkWebView/">
+        WKWebView的使用说明
+      </a>
+    </div>
+  
+</nav>
+
+  
+</article>
+
+<!-- 默认显示文章目录，在文章---前输入toc: false关闭目录 -->
+<!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
+<div id="toc" class="toc-article">
+<strong class="toc-title">文章目录</strong>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络基础概念"><span class="toc-number">1.</span> <span class="toc-text">网络基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NSURLConnection"><span class="toc-number">1.1.</span> <span class="toc-text">NSURLConnection</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#NSURLConnection基础介绍"><span class="toc-number">1.1.1.</span> <span class="toc-text">NSURLConnection基础介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#关于NSConnection的常用代理"><span class="toc-number">1.1.2.</span> <span class="toc-text">关于NSConnection的常用代理</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSURLSession"><span class="toc-number">1.2.</span> <span class="toc-text">NSURLSession</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#区别"><span class="toc-number">1.2.1.</span> <span class="toc-text">区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NSURLSessionTask_的工厂方法"><span class="toc-number">1.2.2.</span> <span class="toc-text">NSURLSessionTask 的工厂方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Task"><span class="toc-number">1.2.3.</span> <span class="toc-text">Task</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Data_task"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">Data task</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Upload_task"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">Upload task</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Download_task"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">Download task</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NSURLSessionConfiguration"><span class="toc-number">1.2.4.</span> <span class="toc-text">NSURLSessionConfiguration</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NSURLSessionConfiguration_的工厂方法"><span class="toc-number">1.2.5.</span> <span class="toc-text">NSURLSessionConfiguration 的工厂方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#配置属性"><span class="toc-number">1.2.6.</span> <span class="toc-text">配置属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#基本配置"><span class="toc-number">1.2.7.</span> <span class="toc-text">基本配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#cookie策略"><span class="toc-number">1.2.8.</span> <span class="toc-text">cookie策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#安全策略"><span class="toc-number">1.2.9.</span> <span class="toc-text">安全策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#缓存策略"><span class="toc-number">1.2.10.</span> <span class="toc-text">缓存策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#自定义的协议"><span class="toc-number">1.2.11.</span> <span class="toc-text">自定义的协议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于AFN的代码解析："><span class="toc-number">2.</span> <span class="toc-text">关于AFN的代码解析：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dispatch_once"><span class="toc-number">2.1.</span> <span class="toc-text">dispatch_once</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#weak_&_strong_self"><span class="toc-number">2.2.</span> <span class="toc-text">weak & strong self</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线程"><span class="toc-number">2.3.</span> <span class="toc-text">线程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#使用NSURLConnection有几种选择："><span class="toc-number">2.3.1.</span> <span class="toc-text">使用NSURLConnection有几种选择：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#主线程调用异步接口，会有一个Runloop相关的问题："><span class="toc-number">2.3.1.1.</span> <span class="toc-text">主线程调用异步接口，会有一个Runloop相关的问题：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#子线程调用同步接口"><span class="toc-number">2.3.1.2.</span> <span class="toc-text">子线程调用同步接口</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#子线程调用异步接口："><span class="toc-number">2.3.1.3.</span> <span class="toc-text">子线程调用异步接口：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#状态机"><span class="toc-number">2.4.</span> <span class="toc-text">状态机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSURLConnectionDelegate"><span class="toc-number">2.5.</span> <span class="toc-text">NSURLConnectionDelegate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setCompleteBlock"><span class="toc-number">2.6.</span> <span class="toc-text">setCompleteBlock</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#消除循环引用"><span class="toc-number">2.6.1.</span> <span class="toc-text">消除循环引用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#dispatch_group"><span class="toc-number">2.6.2.</span> <span class="toc-text">dispatch_group</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#”The_Deallocation_Problem”"><span class="toc-number">2.6.3.</span> <span class="toc-text">”The Deallocation Problem”</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他"><span class="toc-number">2.7.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#锁"><span class="toc-number">2.7.1.</span> <span class="toc-text">锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#序列化"><span class="toc-number">2.7.2.</span> <span class="toc-text">序列化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#backgroundTask"><span class="toc-number">2.7.3.</span> <span class="toc-text">backgroundTask</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AFHTTPRequestOperation"><span class="toc-number">2.8.</span> <span class="toc-text">AFHTTPRequestOperation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AFURLRequestSerialization"><span class="toc-number">2.9.</span> <span class="toc-text">AFURLRequestSerialization</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#构建普通请求"><span class="toc-number">2.9.1.</span> <span class="toc-text">构建普通请求</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#格式化请求参数"><span class="toc-number">2.9.1.1.</span> <span class="toc-text">格式化请求参数</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP_Header"><span class="toc-number">2.9.2.</span> <span class="toc-text">HTTP Header</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#其他格式化方式"><span class="toc-number">2.9.3.</span> <span class="toc-text">其他格式化方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#构建multipart请求"><span class="toc-number">2.9.4.</span> <span class="toc-text">构建multipart请求</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Multipart协议介绍"><span class="toc-number">2.9.4.1.</span> <span class="toc-text">Multipart协议介绍</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#实现"><span class="toc-number">2.9.4.2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#NSInputStream子类"><span class="toc-number">2.9.4.3.</span> <span class="toc-text">NSInputStream子类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于证书相关的介绍："><span class="toc-number">2.10.</span> <span class="toc-text">关于证书相关的介绍：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#证书怎么样验证的，怎能保证中间人不能伪造证书？"><span class="toc-number">2.10.1.</span> <span class="toc-text">证书怎么样验证的，怎能保证中间人不能伪造证书？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#什么是SSL_Pinning?"><span class="toc-number">2.10.2.</span> <span class="toc-text">什么是SSL Pinning?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#AFSecurityPolicy"><span class="toc-number">2.10.3.</span> <span class="toc-text">AFSecurityPolicy</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#AFSecurityPolicy分三种验证模式："><span class="toc-number">2.10.4.</span> <span class="toc-text">AFSecurityPolicy分三种验证模式：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#AFSSLPinningModelNone"><span class="toc-number">2.10.4.1.</span> <span class="toc-text">AFSSLPinningModelNone</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#AFSSLPinningModeCertificate"><span class="toc-number">2.10.4.2.</span> <span class="toc-text">AFSSLPinningModeCertificate</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#AFSSLPinningModePublicKey"><span class="toc-number">2.10.4.3.</span> <span class="toc-text">AFSSLPinningModePublicKey</span></a></li></ol></li></ol></li></ol></li></ol>
+</div>
+<style type="text/css">
+  .left-col .switch-btn {
+    display: none;
+  }
+  .left-col .switch-area {
+    display: none;
+  }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script type="text/javascript">
+  var toc_button= document.getElementById("tocButton");
+  var toc_div= document.getElementById("toc");
+  /* Show or hide toc when click on tocButton.
+  通过点击设置的按钮显示或者隐藏文章目录.*/
+  toc_button.onclick=function(){
+  if(toc_div.style.display=="none"){
+  toc_div.style.display="block";
+  toc_button.value="隐藏目录";
+  document.getElementById("switch-btn").style.display="none";
+  document.getElementById("switch-area").style.display="none";
+  }
+  else{
+  toc_div.style.display="none";
+  toc_button.value="显示目录";
+  document.getElementById("switch-btn").style.display="block";
+  document.getElementById("switch-area").style.display="block";
+  }
+  }
+</script>
+
+
+<div class="share">
+	<div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+	</div>
+	<script>
+	window._bd_share_config={
+		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+</div>
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    </div>
+
+
+  
+  
+    
+    <div  class="post-nav-button">
+    <a href="/2016/03/07/responseStateCode302/" title="上一篇: iOS拦截重定向请求（302）的几种方式">
+    <i class="fa fa-angle-left"></i>
+    </a>
+    <a href="/2016/02/18/wkWebView/" title="下一篇: WKWebView的使用说明">
+    <i class="fa fa-angle-right"></i>
+    </a>
+    </div>
+  
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2016 yida
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+        </div>
+    </div>
+    <div class="visit">
+      <span id="busuanzi_container_site_pv" style='display:none'>
+        <span id="site-visit" >本站到访数: 
+        <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </span>
+      <span id="busuanzi_container_page_pv" style='display:none'>
+        <span id="page-visit">, 本页阅读量: 
+        <span id="busuanzi_value_page_pv"></span>
+        </span>
+      </span>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  var backgroundList = ["url(/background/bg-1.jpg)", "url(/background/bg-2.jpg)","url(/background/bg-3.jpg)","url(/background/bg-4.jpg)","url(/background/bg-5.jpg)"];
+  var background = Math.floor(Math.random() * backgroundList.length);
+  $("body").css({"background": backgroundList[background], "background-attachment": "fixed", "background-size": "cover"});
+</script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
