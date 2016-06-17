@@ -1,673 +1,1133 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
   
-  <title>yida&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="伪文艺青年 天平男 iOS开发 90后">
 <meta property="og:type" content="website">
-<meta property="og:title" content="yida's blog">
+<meta property="og:title" content="益达的博客">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="yida's blog">
-<meta property="og:description">
+<meta property="og:site_name" content="益达的博客">
+<meta property="og:description" content="伪文艺青年 天平男 iOS开发 90后">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yida's blog">
-<meta name="twitter:description">
-  
-    <link rel="alternative" href="/atom.xml" title="yida&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="twitter:title" content="益达的博客">
+<meta name="twitter:description" content="伪文艺青年 天平男 iOS开发 90后">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+  <title> 益达的博客 </title>
 </head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-			<img lazy-src="/img/yida_pic.png" class="js-avatar">
-			
-		</a>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">yida</a></h1>
-		</hgroup>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-		
-		
-		<form><input type="text" class="search" placeholder=" Search..."></form>
-				
+  
 
 
-		
-			<div id="switch-btn" class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						<li>友情链接</li>
-						
-						
-						<li>关于我</li>
-						
-					</ul>
-				</div>
-			</div>
-		
 
-		<div id="switch-area" class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-							<li><a href="/categories/iOS/">iOS技术文档</a></li>
-				        
-							<li><a href="/categories/financial">金融文档</a></li>
-				        
-							<li><a href="/categories/introduction">随笔</a></li>
-				        
-							<li><a href="/about">关于我</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<ul class="social">
-							
-								<li id="Email"><a class="Email" target="_blank" href="/yida9623@126.com" title="Email"></a></li>
-					        
-						</ul>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/iOS/" style="font-size: 10px;">iOS</a>
-					</div>
-				</section>
-				
-				
-				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
-			        
-			        </div>
-				</section>
-				
 
-				
-				
-				<section class="switch-part switch-part4">
-				
-					<div id="js-aboutme">专注于前端</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">益达的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">yida's blog</p>
 </div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">yida</a></h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<a href="/" class="profilepic">
-				<img lazy-src="/img/yida_pic.png" class="js-avatar">
-			</a>
-			<hgroup>
-			  <h1 class="header-author"><a href="/" title="回到主页">yida</a></h1>
-			</hgroup>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-					<li><a href="/categories/iOS/">iOS技术文档</a></li>
-		        
-					<li><a href="/categories/financial">金融文档</a></li>
-		        
-					<li><a href="/categories/introduction">随笔</a></li>
-		        
-					<li><a href="/about">关于我</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-						<ul class="social">
-							
-								<li id="Email"><a class="Email" target="_blank" href="/yida9623@126.com" title="Email"></a></li>
-					        
-						</ul>
-			</nav>
-		</header>				
-	</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-iOSshiyongxiaojiqiao" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/04/iOSshiyongxiaojiqiao/" class="article-date">
-  	<time datetime="2016-06-04T04:12:12.000Z" itemprop="datePublished">2016-06-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
     
-      <input type="hidden" class="isFancy" />
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/04/iOSshiyongxiaojiqiao/">iOS 实用小技巧说明</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>iOS开发中长使用的一些简单的的小技巧总结一下</p>
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
-
-
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/06/04/iOSshiyongxiaojiqiao/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOSExtensionFunction" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/04/iOSExtensionFunction/" class="article-date">
-  	<time datetime="2016-06-04T04:12:12.000Z" itemprop="datePublished">2016-06-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/04/iOSExtensionFunction/">iOS Extension的功能点</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>应用扩展(App Extension)是iOS8最值得人期待的功能之一。它们让开发者在整个操作系统的其他部分扩展应用程序的内容和功能。iOS8是一个开放的平台允许用户在他们的设备上进行更多的交互。应用扩展使开发人员能够在他们没有自己的应用程序的地方提供自定义功能的权利，甚至包括Apple的股票应用。</p>
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
-
-
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/06/04/iOSExtensionFunction/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-runtime" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/08/runtime/" class="article-date">
-  	<time datetime="2016-03-08T02:00:10.000Z" itemprop="datePublished">2016-03-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/04/iOSshiyongxiaojiqiao/" itemprop="url">
+                  iOS 实用小技巧说明
+                </a>
+              
+            
+          </h1>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/08/runtime/">Runtime的运行机制</a>
-    </h1>
-  
 
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-06-04T12:12:12+08:00" content="2016-06-04">
+              2016-06-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
       </header>
-      
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前在项目中有遇到过用runtime解决改变全局字体的问题，所以再一次感受到了runtime的黑魔法的强大，趁现在有机会分享一下对runtime的理解。</p>
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
 
+
+    <div class="post-body" itemprop="articleBody">
 
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
+      
 
       
-        <p class="article-more-link">
-          <a  href="/2016/03/08/runtime/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-responseStateCode302" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/07/responseStateCode302/" class="article-date">
-  	<time datetime="2016-03-07T08:45:01.000Z" itemprop="datePublished">2016-03-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/07/responseStateCode302/">iOS拦截重定向请求（302）的几种方式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在多数情况下，我们看到的网络请求都是200的状态码，比如使用基于Oauth2认证协议的API，在认证阶段，需要提供一个回调地址，当用户授权后，服务器会返回一个302Response，Response Header中会有一个Localtion的字段，包含了我们的回调地址，同时会有一个Code的参数</p>
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
-
-
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/03/07/responseStateCode302/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-NSURLConnection+NSURLSession" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/23/NSURLConnection+NSURLSession/" class="article-date">
-  	<time datetime="2016-02-23T05:45:12.000Z" itemprop="datePublished">2016-02-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+          <p>iOS开发中长使用的一些简单的的小技巧总结一下</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/04/iOSshiyongxiaojiqiao/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/23/NSURLConnection+NSURLSession/">从NSURLConnection到NSURLSession</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>iOS 7 和 Mac OS X 10.9 Mavericks 中一个显著的变化就是对 Foundation URL 加载系统的彻底重构。</p>
-      
       
     </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
 
-
+    <div>
       
-      
-        <p class="article-more-link">
-          <a  href="/2016/02/23/NSURLConnection+NSURLSession/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
-
-
-
-
-
-
-
-
-  
-    <article id="post-wkWebView" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/18/wkWebView/" class="article-date">
-  	<time datetime="2016-02-18T09:29:13.000Z" itemprop="datePublished">2016-02-18</time>
-</a>
+    <div>
+      
     </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-  <div class="article-inner">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/04/iOSExtensionFunction/" itemprop="url">
+                  iOS Extension的功能点
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-06-04T12:12:12+08:00" content="2016-06-04">
+              2016-06-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>应用扩展(App Extension)是iOS8最值得人期待的功能之一。它们让开发者在整个操作系统的其他部分扩展应用程序的内容和功能。iOS8是一个开放的平台允许用户在他们的设备上进行更多的交互。应用扩展使开发人员能够在他们没有自己的应用程序的地方提供自定义功能的权利，甚至包括Apple的股票应用。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/04/iOSExtensionFunction/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/18/wkWebView/">WKWebView的使用说明</a>
-    </h1>
   
 
-      </header>
-      
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-    <div class="article-entry" itemprop="articleBody">
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/08/runtime/" itemprop="url">
+                  Runtime的运行机制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-03-08T10:00:10+08:00" content="2016-03-08">
+              2016-03-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h2 id="wkWebView">wkWebView</h2><p>WkWebViews是现在 WebKit API 在 iOS 8 和 OS X Yosemite 应用中的核心部分。它代替了 UIKit 中的 UIWebView 和 AppKit 中的 WebView，提供了统一的跨双平台 API。</p>
+      
+
+      
+        
+          <p>之前在项目中有遇到过用runtime解决改变全局字体的问题，所以再一次感受到了runtime的黑魔法的强大，趁现在有机会分享一下对runtime的理解。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/08/runtime/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/07/responseStateCode302/" itemprop="url">
+                  iOS拦截重定向请求（302）的几种方式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-03-07T16:45:01+08:00" content="2016-03-07">
+              2016-03-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在多数情况下，我们看到的网络请求都是200的状态码，比如使用基于Oauth2认证协议的API，在认证阶段，需要提供一个回调地址，当用户授权后，服务器会返回一个302Response，Response Header中会有一个Localtion的字段，包含了我们的回调地址，同时会有一个Code的参数</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/07/responseStateCode302/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/23/NSURLConnection+NSURLSession/" itemprop="url">
+                  从NSURLConnection到NSURLSession
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-02-23T13:45:12+08:00" content="2016-02-23">
+              2016-02-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>iOS 7 和 Mac OS X 10.9 Mavericks 中一个显著的变化就是对 Foundation URL 加载系统的彻底重构。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/02/23/NSURLConnection+NSURLSession/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/18/wkWebView/" itemprop="url">
+                  WKWebView的使用说明
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-02-18T17:29:13+08:00" content="2016-02-18">
+              2016-02-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="wkWebView">wkWebView</h2><p>WkWebViews是现在 WebKit API 在 iOS 8 和 OS X Yosemite 应用中的核心部分。它代替了 UIKit 中的 UIWebView 和 AppKit 中的 WebView，提供了统一的跨双平台 API。</p>
 <p>自诩拥有 60fps 滚动刷新率、内置手势、高效的 app 和 web 信息交换通道、和 Safari 相同的 JavaScript 引擎，WKWebView 毫无疑问地成为了 WWDC 2014 上的最亮点</p>
 <p>UIWebView &amp; UIWebViewDelegate 这个两个东西是如何在 WKWebKit 中被重构成 14 个类 3 个协议的呢。虽然这次的变化确实带来了不少的新功能，但请一定不要因此感到恐慌！</p>
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
-
-
-      
-      
-        <p class="article-more-link">
-          <a  href="/2016/02/18/wkWebView/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-jsbridgekykj" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/11/jsbridgekykj/" class="article-date">
-  	<time datetime="2016-01-11T09:19:09.000Z" itemprop="datePublished">2016-01-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/02/18/wkWebView/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/11/jsbridgekykj/">开源库WebViewJavascriptBridge</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简单说明下WebViewJavascriptBridge执行流程">简单说明下WebViewJavascriptBridge执行流程</h2><p>原理: 原理其实很好理解，主要就内置的webview，通过一个基类的信息存储，通过webview处理js中函数事件，以及基类中数据存储再执行，数据再封装成指定格式，来实现callbackID和responseID的实现；；并且js那边也有个jsbridge对象来处理之前约定的回调事件，如客户端定义的handler，也就是handlerName对应的回调函数在js对象中其实有一个对应的回调方法可以触发执行js的方法</p>
-      
       
     </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
 
-
+    <div>
       
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/11/jsbridgekykj/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
-
-
-
-
-
-
-
-
-  
-    <article id="post-nslocalizedString" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/10/29/nslocalizedString/" class="article-date">
-  	<time datetime="2015-10-29T13:48:50.000Z" itemprop="datePublished">2015-10-29</time>
-</a>
+    <div>
+      
     </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-  <div class="article-inner">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/11/jsbridgekykj/" itemprop="url">
+                  开源库WebViewJavascriptBridge
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-11T17:19:09+08:00" content="2016-01-11">
+              2016-01-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="简单说明下WebViewJavascriptBridge执行流程">简单说明下WebViewJavascriptBridge执行流程</h2><p>原理: 原理其实很好理解，主要就内置的webview，通过一个基类的信息存储，通过webview处理js中函数事件，以及基类中数据存储再执行，数据再封装成指定格式，来实现callbackID和responseID的实现；；并且js那边也有个jsbridge对象来处理之前约定的回调事件，如客户端定义的handler，也就是handlerName对应的回调函数在js对象中其实有一个对应的回调方法可以触发执行js的方法</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/11/jsbridgekykj/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/29/nslocalizedString/">NsLocalizedString的使用</a>
-    </h1>
   
 
-      </header>
-      
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-    <div class="article-entry" itemprop="articleBody">
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/29/nslocalizedString/" itemprop="url">
+                  NsLocalizedString的使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-29T21:48:50+08:00" content="2015-10-29">
+              2015-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p><strong>关于NSLocalizedString的介绍</strong></p>
+      
+
+      
+        
+          <p><strong>关于NSLocalizedString的介绍</strong></p>
 <p>字符串也许是计算最通用的数据类型。他们以符号的方式传来传去，用来为数值编码，键值关联，代表资源路径，存储语言内容和格式的信息。对面向用户的字符串具有强有力的控制是营造良好的用户体验必不可少的能力。</p>
 <p>在 Foundation 中，有一个方便的宏表示作为面向用户的字符串：NSLocalizedString。</p>
 <p>NSLocalizedString 提供本地化字符串的 “一次编译 / 随处运行” 的方式，根据用户设置的字符串表把所有本地化字符串替换成对应的翻译。但是，即使你不打算把你的应用程序本地化到任何其他市场，NSLocalizedString 在拷贝与编辑上仍然有神奇的作用。</p>
@@ -675,246 +1135,467 @@
 <p>产品的国际化就像牙线：所有人都知道他们应该使用，却可能都不去用。</p>
 <p>像其他习惯一样，通过不断实践才能使应用国际化这件事变成你开发过程中的天性，以至于习惯之后你都没有办法容许自己不做国际化。而你现在所需的只是一个人教你如何去做。</p>
 <p>就让NSHipster成为帮你通过这一片异土的维吉尔牙齿健康专家，保证没有蛀牙哟！</p>
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
-
-
-      
-      
-        <p class="article-more-link">
-          <a  href="/2015/10/29/nslocalizedString/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-use-hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/10/29/use-hexo/" class="article-date">
-  	<time datetime="2015-10-29T08:51:50.000Z" itemprop="datePublished">2015-10-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/29/nslocalizedString/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/29/use-hexo/">使用hexo搭建博客</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>hexo是由Node.js驱动的一款快速、简单且功能强大的博客框架。它和jekyll相比，更快，更轻量。之前在Github上托管的博客就是使用jekyll搭建的，官方的Github Pages同样推荐使用它。但是jekyll目前有不少缺点，包括生成速度尤其是文章多了以后的生成速度让人无法接受，默认引擎Redcarpet解析Markdown时对中文支持不好，而且在Windows上使用问题多多，之前被严重坑过，虽然有解决的办法但是实在是耗费精力。经过@AriesDevil同学介绍，认识了hexo，这个来自台湾大学生的作品，蒙拜之情瞬间产生。于是从Github Cl one项目，在非常详细的文档帮助下马上就在本地跑起来博客了，速度飕飕的果不其然，V8引擎不是盖的，快赶上法拉利了。下面是具体的步骤和需要注意的事情。</strong></p>
-      
       
     </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/introduction/">introduction</a>
-	</div>
 
-
+    <div>
       
-      
-        <p class="article-more-link">
-          <a  href="/2015/10/29/use-hexo/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
-
-
-
-
-
-
-
-
-  
-    <article id="post-yida" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/10/21/yida/" class="article-date">
-  	<time datetime="2015-10-21T00:27:09.000Z" itemprop="datePublished">2015-10-21</time>
-</a>
+    <div>
+      
     </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-  <div class="article-inner">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/21/yida/">益达的第一个文章</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/29/use-hexo/" itemprop="url">
+                  使用hexo搭建博客
+                </a>
+              
+            
+          </h1>
+        
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="head_检测">head 检测</h2>
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-29T16:51:50+08:00" content="2015-10-29">
+              2015-10-29
+            </time>
+          </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/introduction/" itemprop="url" rel="index">
+                    <span itemprop="name">introduction</span>
+                  </a>
+                </span>
 
-      
-      
-        <p class="article-more-link">
-          <a  href="/2015/10/21/yida/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
+                
+                
 
+              
+            </span>
+          
 
+          
+            
+          
 
+          
 
+          
+          
 
-
-
-
-
-  
-  
-</div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-      <div class="footer-left">
-        &copy; 2016 yida
-      </div>
-        <div class="footer-right">
-          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+          
         </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>hexo是由Node.js驱动的一款快速、简单且功能强大的博客框架。它和jekyll相比，更快，更轻量。之前在Github上托管的博客就是使用jekyll搭建的，官方的Github Pages同样推荐使用它。但是jekyll目前有不少缺点，包括生成速度尤其是文章多了以后的生成速度让人无法接受，默认引擎Redcarpet解析Markdown时对中文支持不好，而且在Windows上使用问题多多，之前被严重坑过，虽然有解决的办法但是实在是耗费精力。经过@AriesDevil同学介绍，认识了hexo，这个来自台湾大学生的作品，蒙拜之情瞬间产生。于是从Github Cl one项目，在非常详细的文档帮助下马上就在本地跑起来博客了，速度飕飕的果不其然，V8引擎不是盖的，快赶上法拉利了。下面是具体的步骤和需要注意的事情。</strong></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/29/use-hexo/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
     </div>
-    <div class="visit">
-      <span id="busuanzi_container_site_pv" style='display:none'>
-        <span id="site-visit" >本站到访数: 
-        <span id="busuanzi_value_site_uv"></span>
-        </span>
-      </span>
-      <span id="busuanzi_container_page_pv" style='display:none'>
-        <span id="page-visit">, 本页阅读量: 
-        <span id="busuanzi_value_page_pv"></span>
-        </span>
-      </span>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/21/yida/" itemprop="url">
+                  益达的第一个文章
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-21T08:27:09+08:00" content="2015-10-21">
+              2015-10-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="head_检测">head 检测</h2>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/21/yida/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
-</footer>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="yida" />
+          <p class="site-author-name" itemprop="name">yida</p>
+          <p class="site-description motion-element" itemprop="description">伪文艺青年 天平男 iOS开发 90后</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  </aside>
 
 
-<script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: true,
-		isPost: false,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
-</script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yida</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
 
 <script type="text/javascript">
-  var backgroundList = ["url(/background/bg-1.jpg)", "url(/background/bg-2.jpg)","url(/background/bg-3.jpg)","url(/background/bg-4.jpg)","url(/background/bg-5.jpg)"];
-  var background = Math.floor(Math.random() * backgroundList.length);
-  $("body").css({"background": backgroundList[background], "background-attachment": "fixed", "background-size": "cover"});
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
 
 
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 
-<div class="scroll" id="scroll">
-<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
-</div>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-  </div>
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
 </body>
 </html>
