@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/10/29/use-hexo/index.html">
 <meta property="og:site_name" content="益达的博客">
 <meta property="og:description" content="hexo是由Node.js驱动的一款快速、简单且功能强大的博客框架。它和jekyll相比，更快，更轻量。之前在Github上托管的博客就是使用jekyll搭建的，官方的Github Pages同样推荐使用它。但是jekyll目前有不少缺点，包括生成速度尤其是文章多了以后的生成速度让人无法接受，默认引擎Redcarpet解析Markdown时对中文支持不好，而且在Windows上使用问题多多，之前被">
-<meta property="og:updated_time" content="2016-02-19T09:05:42.000Z">
+<meta property="og:updated_time" content="2016-07-19T09:14:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用hexo搭建博客">
 <meta name="twitter:description" content="hexo是由Node.js驱动的一款快速、简单且功能强大的博客框架。它和jekyll相比，更快，更轻量。之前在Github上托管的博客就是使用jekyll搭建的，官方的Github Pages同样推荐使用它。但是jekyll目前有不少缺点，包括生成速度尤其是文章多了以后的生成速度让人无法接受，默认引擎Redcarpet解析Markdown时对中文支持不好，而且在Windows上使用问题多多，之前被">
@@ -298,22 +298,22 @@
         <p><strong>hexo是由Node.js驱动的一款快速、简单且功能强大的博客框架。它和jekyll相比，更快，更轻量。之前在Github上托管的博客就是使用jekyll搭建的，官方的Github Pages同样推荐使用它。但是jekyll目前有不少缺点，包括生成速度尤其是文章多了以后的生成速度让人无法接受，默认引擎Redcarpet解析Markdown时对中文支持不好，而且在Windows上使用问题多多，之前被严重坑过，虽然有解决的办法但是实在是耗费精力。经过@AriesDevil同学介绍，认识了hexo，这个来自台湾大学生的作品，蒙拜之情瞬间产生。于是从Github Cl one项目，在非常详细的文档帮助下马上就在本地跑起来博客了，速度飕飕的果不其然，V8引擎不是盖的，快赶上法拉利了。下面是具体的步骤和需要注意的事情。</strong></p>
 <a id="more"></a>
 <h2 id="安装与配置">安装与配置</h2><h3 id="准备迁移工作">准备迁移工作</h3><p>需要先配置好<strong>Node.js</strong>环境，npm工具以及Git，之后的本地初始化请参考文档中的说明，照着文档一步步做就行。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> hexo</span><br><span class="line">hexo init &lt;folder&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">执行如下命令安装Hexo</span><br><span class="line">npm install -g hexo</span><br><span class="line"></span><br><span class="line">执行init命令初始化hexo</span><br><span class="line">hexo init <span class="tag">&lt;<span class="title">folder</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>全局设定文件储存于网站根目录下的_config.yml文件，根据你的需要配置站点名，固定链接等诸多设定。<br>如果你是从jekyll/Octopress/Wordpress迁移过来的，也很容易，<a href="http://zespia.tw/hexo/docs/" target="_blank" rel="external">顺着这里</a>安装下插件。注意留意所有文件中，尤其是配置文件中的空格，缺少空格会报错。</p>
 <h3 id="安装插件和主题">安装插件和主题</h3><p>Hexo提供丰富的<a href="https://github.com/hexojs/hexo/wiki/Plugins" target="_blank" rel="external">插件</a>以及<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">主题</a>。安装方法都是一样的。</p>
 <ul>
 <li><p>插件</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> &lt;<span class="keyword">plugin</span>-<span class="keyword">name</span>&gt; <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="tag">&lt;<span class="title">plugin-name</span>&gt;</span> --save</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>主题</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">&lt;repository</span>&gt; themes/ <span class="tag">&lt;theme-name&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone <span class="tag">&lt;<span class="title">repository</span>&gt;</span> themes/ <span class="tag">&lt;<span class="title">theme-name</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>无论是插件还是主题在安装后都需要在根目录下_config.yml中修改plugins和theme的值以启用他们。</p>
-<p>###使用与调试<br>在本地如果需要预览或者调试你的博客，可以启动本地服务器：<br><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">server</span></span><br></pre></td></tr></table></figure></p>
-<p>部署到Github前需要配置_config.yml文件。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy：</span><br><span class="line">      type:github</span><br><span class="line">      repository:git@github<span class="class">.com</span>:A-limon/a-limon<span class="class">.github</span><span class="class">.com</span><span class="class">.git</span></span><br><span class="line">      branch:master</span><br></pre></td></tr></table></figure></p>
-<p>如果你是为一个项目制作网站，那么需要把branch设置为gh-pages。若要绑定自定义域名也可以参考Hexo或Github Page的帮助文档，制作一个cname文件。<br>之后执行下列指令即可完成部署，注意部署会覆盖掉你之前在版本库中存放的文件。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
-<p>或可加入 —generate 选项，在部署前自动生成文件。<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy <span class="comment">--generate</span></span><br></pre></td></tr></table></figure></p>
+<p>###使用与调试<br>在本地如果需要预览或者调试你的博客，可以启动本地服务器：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></p>
+<p>部署到Github前需要配置_config.yml文件。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy：</span><br><span class="line">      type:github</span><br><span class="line">      repository:git@github.com:A-limon/a-limon.github.com.git</span><br><span class="line">      branch:master</span><br></pre></td></tr></table></figure></p>
+<p>如果你是为一个项目制作网站，那么需要把branch设置为gh-pages。若要绑定自定义域名也可以参考Hexo或Github Page的帮助文档，制作一个cname文件。<br>之后执行下列指令即可完成部署，注意部署会覆盖掉你之前在版本库中存放的文件。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>或可加入 —generate 选项，在部署前自动生成文件。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy --generate</span><br></pre></td></tr></table></figure></p>
 <p>其原理就是hexo在执行hexo generate时会在本地先把博客生成的一套静态站点放到public文件夹中，在执行hexo deploy时将其复制到.deploy文件夹中。Github的版本库通常建议同时附上README.md说明文件，但是hexo默认情况下会把所有md文件解析成html文件，所以即使你在线生成了README.md，它也会在你下一次部署时被删去。怎么解决呢？在执行hexo deploy前把在本地写好的README.md文件复制到.deploy文件夹中，再去执行hexo deploy。</p>
 
       
@@ -417,7 +417,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

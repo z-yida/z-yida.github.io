@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -84,26 +84,17 @@
 
 
 
-<meta name="description" content="关于NSLocalizedString的介绍
-字符串也许是计算最通用的数据类型。他们以符号的方式传来传去，用来为数值编码，键值关联，代表资源路径，存储语言内容和格式的信息。对面向用户的字符串具有强有力的控制是营造良好的用户体验必不可少的能力。
-在 Foundation 中，有一个方便的宏表示作为面向用户的字符串：NSLocalizedString。
-NSLocalizedString 提供本地化字">
+<meta name="description" content="NSLocalizedString的使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NsLocalizedString的使用">
 <meta property="og:url" content="http://yoursite.com/2015/10/29/nslocalizedString/index.html">
 <meta property="og:site_name" content="益达的博客">
-<meta property="og:description" content="关于NSLocalizedString的介绍
-字符串也许是计算最通用的数据类型。他们以符号的方式传来传去，用来为数值编码，键值关联，代表资源路径，存储语言内容和格式的信息。对面向用户的字符串具有强有力的控制是营造良好的用户体验必不可少的能力。
-在 Foundation 中，有一个方便的宏表示作为面向用户的字符串：NSLocalizedString。
-NSLocalizedString 提供本地化字">
+<meta property="og:description" content="NSLocalizedString的使用">
 <meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/localization_project_setting.png">
-<meta property="og:updated_time" content="2016-02-23T03:18:34.000Z">
+<meta property="og:updated_time" content="2016-07-19T09:06:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NsLocalizedString的使用">
-<meta name="twitter:description" content="关于NSLocalizedString的介绍
-字符串也许是计算最通用的数据类型。他们以符号的方式传来传去，用来为数值编码，键值关联，代表资源路径，存储语言内容和格式的信息。对面向用户的字符串具有强有力的控制是营造良好的用户体验必不可少的能力。
-在 Foundation 中，有一个方便的宏表示作为面向用户的字符串：NSLocalizedString。
-NSLocalizedString 提供本地化字">
+<meta name="twitter:description" content="NSLocalizedString的使用">
 
 
 
@@ -305,15 +296,15 @@ NSLocalizedString 提供本地化字">
       
 
       
-        <p><strong>关于NSLocalizedString的介绍</strong></p>
+        <p>NSLocalizedString的使用</p>
+<a id="more"></a>
+<p><strong>关于NSLocalizedString的介绍</strong></p>
 <p>字符串也许是计算最通用的数据类型。他们以符号的方式传来传去，用来为数值编码，键值关联，代表资源路径，存储语言内容和格式的信息。对面向用户的字符串具有强有力的控制是营造良好的用户体验必不可少的能力。</p>
 <p>在 Foundation 中，有一个方便的宏表示作为面向用户的字符串：NSLocalizedString。</p>
 <p>NSLocalizedString 提供本地化字符串的 “一次编译 / 随处运行” 的方式，根据用户设置的字符串表把所有本地化字符串替换成对应的翻译。但是，即使你不打算把你的应用程序本地化到任何其他市场，NSLocalizedString 在拷贝与编辑上仍然有神奇的作用。</p>
 <p><strong>关于NSLocale的介绍</strong></p>
 <p>产品的国际化就像牙线：所有人都知道他们应该使用，却可能都不去用。</p>
 <p>像其他习惯一样，通过不断实践才能使应用国际化这件事变成你开发过程中的天性，以至于习惯之后你都没有办法容许自己不做国际化。而你现在所需的只是一个人教你如何去做。</p>
-<p>就让NSHipster成为帮你通过这一片异土的维吉尔牙齿健康专家，保证没有蛀牙哟！</p>
-<a id="more"></a>
 <h3 id="NSLocalizedString的说明">NSLocalizedString的说明</h3><h4 id="定义及使用">定义及使用</h4><p>NSLocalizedString 是一个 Foundation 的宏定义，返回一个字符串的本地化版本。它有两个参数：key：进行本地化的唯一字符串标识，和 comment：用于提供用来准确翻译的足够的上下文的字符串。</p>
 <p>在实践中，key 往往只是用来翻译的基准字符串，而 comment 通常是 nil，除非有一个模糊的上下文：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">textField<span class="variable">.placeholder</span> = <span class="built_in">NSLocalizedString</span>(<span class="string">@"Username"</span>, <span class="literal">nil</span>);</span><br></pre></td></tr></table></figure>
@@ -368,6 +359,12 @@ NSLocalizedString 提供本地化字">
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
       
 
       
@@ -452,7 +449,7 @@ NSLocalizedString 提供本地化字">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

@@ -84,23 +84,20 @@
 
 
 
-<meta name="description" content="wkWebViewWkWebViews是现在 WebKit API 在 iOS 8 和 OS X Yosemite 应用中的核心部分。它代替了 UIKit 中的 UIWebView 和 AppKit 中的 WebView，提供了统一的跨双平台 API。
-自诩拥有 60fps 滚动刷新率、内置手势、高效的 app 和 web 信息交换通道、和 Safari 相同的 JavaScript 引擎，WKW">
+<meta name="description" content="WKWebview的常见知识点介绍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WKWebView的使用说明">
 <meta property="og:url" content="http://yoursite.com/2016/02/18/wkWebView/index.html">
 <meta property="og:site_name" content="益达的博客">
-<meta property="og:description" content="wkWebViewWkWebViews是现在 WebKit API 在 iOS 8 和 OS X Yosemite 应用中的核心部分。它代替了 UIKit 中的 UIWebView 和 AppKit 中的 WebView，提供了统一的跨双平台 API。
-自诩拥有 60fps 滚动刷新率、内置手势、高效的 app 和 web 信息交换通道、和 Safari 相同的 JavaScript 引擎，WKW">
+<meta property="og:description" content="WKWebview的常见知识点介绍">
 <meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/WKWebViewClass">
 <meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/webDebug_webSetting.png">
 <meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/safari_simulator.png">
 <meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/inspectSimulator.png">
-<meta property="og:updated_time" content="2016-02-22T04:49:06.000Z">
+<meta property="og:updated_time" content="2016-07-19T09:07:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WKWebView的使用说明">
-<meta name="twitter:description" content="wkWebViewWkWebViews是现在 WebKit API 在 iOS 8 和 OS X Yosemite 应用中的核心部分。它代替了 UIKit 中的 UIWebView 和 AppKit 中的 WebView，提供了统一的跨双平台 API。
-自诩拥有 60fps 滚动刷新率、内置手势、高效的 app 和 web 信息交换通道、和 Safari 相同的 JavaScript 引擎，WKW">
+<meta name="twitter:description" content="WKWebview的常见知识点介绍">
 
 
 
@@ -302,10 +299,10 @@
       
 
       
-        <h2 id="wkWebView">wkWebView</h2><p>WkWebViews是现在 WebKit API 在 iOS 8 和 OS X Yosemite 应用中的核心部分。它代替了 UIKit 中的 UIWebView 和 AppKit 中的 WebView，提供了统一的跨双平台 API。</p>
+        <p>WKWebview的常见知识点介绍<br><a id="more"></a></p>
+<h2 id="wkWebView">wkWebView</h2><p>WkWebViews是现在 WebKit API 在 iOS 8 和 OS X Yosemite 应用中的核心部分。它代替了 UIKit 中的 UIWebView 和 AppKit 中的 WebView，提供了统一的跨双平台 API。</p>
 <p>自诩拥有 60fps 滚动刷新率、内置手势、高效的 app 和 web 信息交换通道、和 Safari 相同的 JavaScript 引擎，WKWebView 毫无疑问地成为了 WWDC 2014 上的最亮点</p>
 <p>UIWebView &amp; UIWebViewDelegate 这个两个东西是如何在 WKWebKit 中被重构成 14 个类 3 个协议的呢。虽然这次的变化确实带来了不少的新功能，但请一定不要因此感到恐慌！</p>
-<a id="more"></a>
 <h3 id="WkWebview相关类之间的关系">WkWebview相关类之间的关系</h3><p><img src="http://7xnx15.com1.z0.glb.clouddn.com/WKWebViewClass" alt="wkWebview图片之间的关系"></p>
 <h3 id="WKWebview相关类的说明">WKWebview相关类的说明</h3><p>WKBackForwardList: 之前访问过的 web 页面的列表，可以通过后退和前进动作来访问到。<br>WKBackForwardListItem: webview 中后退列表里的某一个网页。<br>WKFrameInfo: 包含一个网页的布局信息。<br>WKNavigation: 包含一个网页的加载进度信息。<br>WKNavigationAction: 包含可能让网页导航变化的信息，用于判断是否做出导航变化。<br>WKNavigationResponse: 包含可能让网页导航变化的返回内容信息，用于判断是否做出导航变化。<br>WKPreferences: 概括一个 webview 的偏好设置。<br>WKProcessPool: 表示一个 web 内容加载池。<br>WKUserContentController: 提供使用 JavaScript post 信息和注射 script 的方法。<br>WKScriptMessage: 包含网页发出的信息。<br>WKUserScript: 表示可以被网页接受的用户脚本。WKWebViewConfiguration: 初始化 webview 的设置。<br>WKWindowFeatures: 指定加载新网页时的窗口属性。<br>WKNavigationDelegate: 提供了追踪主窗口网页加载过程和判断主窗口和子窗口是否进行页面加载新页面的相关方法。<br>WKScriptMessageHandler: 提供从网页中收消息的回调方法<br>WKUIDelegate: 提供用原生控件显示网页的方法回调。</p>
 <h3 id="WKNavigationDelegate">WKNavigationDelegate</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1. 页面开始加载时调用</span><br><span class="line">- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation;</span><br><span class="line">2. 当内容开始返回时调用</span><br><span class="line">- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation;</span><br><span class="line">// 3. 页面加载完成之后调用</span><br><span class="line">- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation;</span><br><span class="line">// 页面加载失败时调用</span><br><span class="line">(void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation;</span><br><span class="line"></span><br><span class="line">// 接收到服务器跳转请求之后调用</span><br><span class="line">- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation;</span><br><span class="line">// 4. 在收到响应后，决定是否跳转</span><br><span class="line">- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler;</span><br><span class="line">// 5. 在发送请求之前，决定是否跳转</span><br><span class="line">- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler;</span><br></pre></td></tr></table></figure>
@@ -431,7 +428,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

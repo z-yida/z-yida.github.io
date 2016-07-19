@@ -1,0 +1,660 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="iOS常见的一些基础的iOS性能优化的点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS性能优化">
+<meta property="og:url" content="http://yoursite.com/2016/07/18/iOSperformance/index.html">
+<meta property="og:site_name" content="益达的博客">
+<meta property="og:description" content="iOS常见的一些基础的iOS性能优化的点">
+<meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/deviceTimeProfile.jpg">
+<meta property="og:image" content="http://7xnx15.com1.z0.glb.clouddn.com/iOS-renderingpassing.jpg">
+<meta property="og:updated_time" content="2016-07-19T08:39:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS性能优化">
+<meta name="twitter:description" content="iOS常见的一些基础的iOS性能优化的点">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/18/iOSperformance/"/>
+
+  <title> iOS性能优化 | 益达的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">益达的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">yida's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS性能优化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-07-18T14:02:11+08:00" content="2016-07-18">
+              2016-07-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>iOS常见的一些基础的iOS性能优化的点</p>
+<a id="more"></a>
+<h4 id="使用Time_Profile进行检查">使用Time Profile进行检查</h4><p>启动Time Profile调试程序：Xcode -&gt;product -&gt; Profile -&gt; Time Profile</p>
+<p>使用Time Profile调试程序，能获取到整个应用程序运行中所消耗的时间分布和百分比，使用Time Profile前有两点注意的地方：</p>
+<ul>
+<li>一定要使用真机调试：因为模拟器运行在Mac上，然而Mac上的CPU往往比iOS设备更快，相反，Mac上的GPU和iOS设备的完全不一样，模拟器不得已要在软件层面（CPU）模拟设备的GPU，这意味着GPU相关的操作在模拟器上运行的更慢，尤其是使用CaeaglLayer来写一些openGL的代码的时候，这就导致模拟器性能数据和用户真机使用性能数据相去甚远。</li>
+<li>应用程序一般要使用发布配置，在发布环境打包的时候，编译器会引入一系列提高性能的优化，例如去掉调试符号或者移除并重新组织代码。</li>
+</ul>
+<p><img src="http://7xnx15.com1.z0.glb.clouddn.com/deviceTimeProfile.jpg" alt="检查说明"></p>
+<p>Separate by Thread:每个线程应该分开考虑，只有这样你才能揪出那些大量占用CPU的”重”线程<br>Invert Call Tree:从上到下跟踪堆栈，这意味着你看到的表中的方法，将已从第0帧开始取样，这通常是想要的，只有这样你才能看到CPU中花费的时间最深的地方<br>Hide System Library：只关心cpu花在你自己的代码上的时间<br>Flatten Recursion:递归函数，每个推荐跟踪一个条目<br>Top Functions：一个函数花费的时间直接在改函数中总和，以及在函数调用该函数所花费的时间的总时间。因此，如果函数A调用B，那么A的时间报告A花费的时间加上B花费的时间，这非常有用，因为它可以让你每次下到调用堆栈时挑最大的时间数字，归零在你最耗时的方法；</p>
+<p>提到一些特定的优化技巧和优化点以及相对应的注意事项：</p>
+<h4 id="关于ImageView相关的">关于ImageView相关的</h4><p>A:imagedName初始化<br>B:imageWithContentsOfFile初始化<br>二者不同在于，imageNamed默认加载图片成功后会内存中缓存图片，这个方法用一个指定的名字在系统缓存中查找并返回一个图像对象，如果缓存中没有找到相对应的图片对象，则从指定地方加载图片然后缓存对象。</p>
+<p>而imageWithContentsOfFile则仅仅只加载图片，不缓存</p>
+<p>大量使用imageNamed方式会在不需要缓存的地方额外增加开销CPU的时间来做这件事情，当应用程序需要加载一张比较大的图片并且使用一次性，那么其实没有必要去缓存这个图片，用imageWithContentsOfFile是最为经济的方式，这样不会因为UIImage元素较多的情况下，CPU会逐个分散在不必要的缓存浪费过多时间</p>
+<p>使用场景需要编程时，应该根据实际应用场景加以区分，UIImage虽小，但使用元素较多问题会有所凸显。</p>
+<h4 id="关于UITableView使用的优化点">关于UITableView使用的优化点</h4><p>TableViews需要有很好的滚动性，不然用户会在滚动过程中发现动画的瑕疵；<br>为了保证table view平滑滚动，确保你采取了一下的措施</p>
+<ul>
+<li>正确使用reuseIdentify来重用cells</li>
+<li>尽量使用所有的view opaque，包括cell自身</li>
+<li>避免渐变，图片缩放</li>
+<li>缓存行高,尽量使用rowHeight，sectionFooterHeight或者sectionHeaderHeight来设置固定的高，而不请求delegate，即便需要请求，也不要在代理方法计算行高，提前缓存好</li>
+<li>如果cell内实现的内容来自web，使用异步加载，缓存请求结果</li>
+<li>使用shadowPath来画阴影</li>
+<li>减少subviews的数量</li>
+<li>减少放置在cellForRowAtIndexPath方法内操作</li>
+<li>使用正确的数据结构来存储数据</li>
+<li>尽量别在tableView上加载JPEG格式的图片，在开发过程中很多时候都必须要tableView上加载图片，但是图片格式为JPEG（我们常说的JPG）或者PNG的格式，那么我们分别来说说二者有什么不一样。（JPEG其实是一种算法，它是使用一个基于离散余弦变换的算法将图片中的某些肉眼都无法识别的元素去掉，并且通过哈弗曼编码的变种，从而减少图片的大小。这也就是为什么我们用IPhone拍的4M的图偏，通过UIImageJPEGRepresentation(&lt;#UIImage *image#&gt;,&lt;#CGfloat compressionQuality#&gt;)方法压缩质量后能压缩到几十KB，但是又看不出来明显的变化。当然有压缩也可以进行解压，我们加载JPEG图片的时候CPU要忙于为图片加压会造成延迟显示图片，如果过多的在tableView上使用JPEG图片，会造成CPU压力过大的问题。PNG不能像JPEG那样进行压缩，但是他的解码要比JPEG简单的多，所以用来程序中展示是一个非常好的选择，苹果在IOS的技术上对正常的PNG的解压进行优化，这就是苹果为什么推荐开发者尽量使用PNG图片的原因。</li>
+<li>使用NSCache来进行对footerview进行缓存（NSCache用法跟NSDictionary一样，可以调用objectForkey：，setObject:forKey，和removeObjectForKey，但是NSCache有一些特性是被低估的，比如其多线程安全性，小伙伴们可以在任何线程不加锁的情况下修改NSCache，NSCache还设计为能符合<nsdiscardablecontent>协议的对象整合，这不仅能在应用运行的时候提供自动缓存管理，甚至在应用暂定的时候也有用。意思当您的内存吃紧的时候，系统会帮你释放NSCache内的对象，而且这是相当安全的行为）</nsdiscardablecontent></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">使用NSCache缓存header或者footer上的view</span><br><span class="line">- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section &#123;</span><br><span class="line">    UIView *view;</span><br><span class="line">    if (![self.scHeadcache objectForKey:@(section)]) &#123;</span><br><span class="line">        view  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        view = [self.scHeadcache objectForKey:@(section)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return view;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="加速开打app：">加速开打app：</h4><p>特别是第一次打开app的时候，尽可能的使他做异步任务，比如加载远端或者数据库数据，解析数据；避免过于庞大的XIB，因为他是在主线程加载的</p>
+<h4 id="使用AutoRelease_Pool">使用AutoRelease Pool</h4><p>NSAutoReleasePool 负责释放block的autoreleased objects.一般情况下他会自动被UIKit调用，但是有些情况下你需要手动去创建它。<br>加入你创建很多临时对象，你会发现内存一直减少到这些对象呗release的时候，这是因为只有当UIKit用光了autorelease pool的时候memory才会被释放。</p>
+<h4 id="理性的使用-drawRect：方法">理性的使用-drawRect：方法</h4><p>大家或许感到奇怪，有不少开发者在发有关性能优化的博客当中指出使用-drawRect:来优化性能。但是我这里不建议大家未经思考使用-drawRect:方法。原因如下：因为你使用UIImageView在加载一个视图中，这个视图虽然有CALayer，但是却没有申请到一个后背的存储，取而代之的是地使用屏幕渲染，讲CGImageRef作为内容，并且渲染服务奖图片数据绘制到帧的缓存区，就是现实到屏幕上，当我们滚动视图的时候，这个是屁将会重新加载，浪费性能。所以对于使用-drawRect：方法，更倾向于使用CALayer来绘制图层，因为使用CALayer的-drawInContext:,CoreAnimation将会为这个图层申请一个后备存储，用来保存那些方法绘制进来的位图。那些方法内的代码会将运行在CPU上，结果将会被上传到GPU，这样做的性能更好些。在绘制图的时候尽量少用drawRect方法</p>
+<h4 id="使用后台绘制：">使用后台绘制：</h4><p>当你的应用存在的绘图部分并不是那么流畅的时候，你可以去检验一下是否你的 drawRect: 就是影响你应用性能的瓶颈，那么，你可以将这段绘制代码放到后台去做。但是在你这么做之前，检查是不是有其他方法来解决，比如、考虑使用 core animation layers 或者预先渲染图片而不去做 Core Graphics 绘制。</p>
+<h5 id="首先创建一个AsynchronousDrawVie类继承UIView">首先创建一个AsynchronousDrawVie类继承UIView</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ASynchronousDrawView.h</span><br><span class="line">@interface ASynchronousDrawView : UIView</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">ASynchronousDrawView.m</span><br><span class="line">@interface ASynchronousDrawView()</span><br><span class="line">@property (nonatomic , weak) UIImageView *imageView;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<h5 id="然后在initWithFrame：方法中去创建建立好UIImageView">然后在initWithFrame：方法中去创建建立好UIImageView</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ASynchronousDrawView.m</span><br><span class="line">@implementation ASynchronousDrawView</span><br><span class="line">- (instancetype)initWithFrame:(CGRect)frame &#123;</span><br><span class="line">    if (self = [super initWithFrame:frame]) &#123;</span><br><span class="line">        UIImageView *imageView = [[UIImageView alloc] init];</span><br><span class="line">        imageView.frame = self.bounds;</span><br><span class="line">        imageView.backgroundColor = [UIColor whiteColor];</span><br><span class="line">        [self addSubview:imageView];</span><br><span class="line">        self.imageView = imageView;</span><br><span class="line">&#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="接下来就是我们的绘制方法，我下面代码只是一个演示，并不是说这段代码很耗时">接下来就是我们的绘制方法，我下面代码只是一个演示，并不是说这段代码很耗时</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (void)asynchronousDrawComplete:(void(^)(UIImage *))complete &#123;</span><br><span class="line">// 异步绘制，在绘制方法中，使用 UIGraphicsBeginImageContextWithOptions 来取代UIGraphicsGetCurrentContext</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.frame.size.width, self.frame.size.height), true, 0);</span><br><span class="line">        // 实例画图代码(耗时的绘制应放在这里)</span><br><span class="line">        UIBezierPath *bezier = [UIBezierPath bezierPath];</span><br><span class="line">        [[UIColor redColor] setFill];</span><br><span class="line">        [bezier addArcWithCenter:CGPointMake(self.frame.size.width * 0.5, self.frame.size.height * 0.5) radius:40 startAngle:0 endAngle:M_PI * 2 clockwise:true];</span><br><span class="line">        [bezier fill];</span><br><span class="line">        // 将绘制转换成图片</span><br><span class="line">        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();</span><br><span class="line">        // 关闭图片上下文</span><br><span class="line">        UIGraphicsEndImageContext();</span><br><span class="line">        dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">           // 绘制操作完成，将图片传出去</span><br><span class="line">            complete(image);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="调用后台绘制方法来替换UIImageView的UIImage">调用后台绘制方法来替换UIImageView的UIImage</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 开始异步绘制</span><br><span class="line">__weak typeof(self) weakSelf = self;</span><br><span class="line">	[self asynchronousDrawComplete:^(UIImage *image) &#123;</span><br><span class="line">        weakSelf.iconView.image = image;</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+<h4 id="offscreen-render_离屏幕渲染">offscreen-render 离屏幕渲染</h4><p>offscreen-render涉及的内容比较多，有offscreen-render，那就有onscreen-render，onscreen-render指的是GPU在当前用户显示的屏幕缓冲区进行渲染，相反offscreen-render就是不在当前的屏幕缓存区，而在另外的缓存区机型渲染，offscreen-render有两种形式</p>
+<h6 id="CPU的offscreen-render">CPU的offscreen-render</h6><p>使用CPU来完成渲染操纵，通常在你使用：</p>
+<ul>
+<li>drawRect(如果没有自定义绘制的任务就不要在子类写一个空的drawRect方法，因为只要实现了该方法，就会为视图分配一个寄宿图，这个寄宿图的尺寸等于视图大小乘以contentsScale的值，造成资源浪费</li>
+<li><p>使用Core Grayphics</p>
+<p>上面的两种情况使用的就是CPU离屏渲染，首先分配一块内存，然后进行渲染操作生成一份bitmap位图，整个渲染过程会在你的应用中同步进行，接着再讲位图打包发送到iOS里，一个单独的进程–render server，理想情况下，render-server将内容交给GPU直接显示在屏幕上。（也就是分配内存+生成bitmap的位图）</p>
+</li>
+</ul>
+<h6 id="GPU的离屏渲染">GPU的离屏渲染</h6><p>GPU的offscreen-render，使用GPU在当前屏幕缓冲区以外开辟一个新的缓冲区进行绘制，通常发生的情况有：</p>
+<ul>
+<li><p>设置CornerRadius，masks，shadows，edge, antialiasing等，</p>
+</li>
+<li><p>设置layer.shouldRasterize=YES；</p>
+</li>
+</ul>
+<h4 id="渲染的整个过程：">渲染的整个过程：</h4><p><img src="http://7xnx15.com1.z0.glb.clouddn.com/iOS-renderingpassing.jpg" alt="渲染的整个过程"></p>
+<h4 id="离屏渲染对性能的影响：">离屏渲染对性能的影响：</h4><p>通常大家说的离屏渲染是指GPU这块（当前CPU这块也会受到影响，也需要消耗一定的资源），比如修改了layer的阴影或者圆角，GPU需要做额外的渲染操作，通常GPU在做渲染的时候很快，但是涉及到offscreen-render的时候情况就有些不同了，因为需要额外开辟新的缓冲区进行渲染，然后绘制到当前屏幕的过程需要做onscreen跟offscreen上下文之间的切换，这个过程的消耗会比较昂贵，涉及到OpenGL的pipline跟barrier，而且offscreen-render在每一帧都会涉及到，因此处理不当肯定会对性能产生一定的影响，所以可以的话尽量减少offscreen-render的图层，查看哪些图层需要离屏幕渲染可以用instruments的core Animation工具进行检测，Color Offscreen-Rendered Yellow选项将会对图层标记为黄色。</p>
+<h4 id="Blending">Blending</h4><p>加入图层的view是不透明的，那直接使用这个view的对应颜色就可以，但如果view是透明的，在计算像素的颜色值就需要计算它下面的图层，透明的视图越多，计算量就越大，因此也会对图形的性能产生一定的影响，所以可以的话尽量减少透明层的数目。</p>
+<p>使用shadowPath</p>
+<p>如果需要设置Label的阴影效果，可以通过下面方法：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cell.sign.layer.shadowOffset = CGSizeMake(0,2);</span><br><span class="line">cell.sign.layer.shadowOpacity = 0.5;</span><br><span class="line">cell.sign.layer.shadowColor = [UIColor blackColor].CGColor;</span><br></pre></td></tr></table></figure></p>
+<p>但这样使用会导致离屏渲染，一个简单的不需要离屏渲染的方法是指定阴影的路径，也就是设置layer的shadowPath属性，通过instruments发现阴影的地方没有黄色，帧率也提高了。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell.sign.layer.shadowPath = [UIBezierPath bezierPathWithRect:cell.sign.bounds].CGPath;</span><br></pre></td></tr></table></figure></p>
+<p>Rasterize</p>
+<p>对于圆角这种类似导致的性能问题，最简单的就是在列表中不要使用圆角，假如要使用圆角的话，一种最快提升性能的方式就是设置Layer的shouldRasterize为yes。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cell.layer.shouldRasterize = YES;</span><br><span class="line">cell.layer.rasterizationScale = [UIScreen mainScreen].scale;</span><br></pre></td></tr></table></figure></p>
+<p>layer设置shouldRasterize = YES,会把被光栅化的图层保存成位图并缓存起来，其中圆角或者阴影之类的也是着急接保存到位图当中，当需要渲染到屏幕上的时候只需要缓存中去去对应的位图进行显示就行了。加快了整个渲染过程。可以通过勾选instrument core animation中的color hits green and misses red选项来查看图层是否被缓存了</p>
+<p>光栅化对于那些有很多子view嵌套在一起，view的层级复杂或者有很复杂特效效果的图层有很明显的提升，因为这些内容都被缓存到位图当中了，但是使用光栅化需要注意一些内容：</p>
+<ul>
+<li>适用于内容基本不变的图层，假如图层的内容经常变化，比如cell里面有涉及到动画之类的，那么缓存的内容就无效了，GPU需要重新创建缓存区，导致离屏渲染，这又涉及到OpenGL的上线文环境切换，反而性能降低了。</li>
+<li>不要过度使用，缓存区的大小被设置为屏幕大小的2.5倍，假如过分使用同样会导致大量的离屏渲染</li>
+<li>如果缓存的内容超过100ms没有被使用组会被回收</li>
+</ul>
+<h4 id="总结：">总结：</h4><ul>
+<li>对于圆角可以使用一张中间圆形透明的图覆盖在上面，虽然这会引起blending操作，但是大部分情况下性能会比离屏渲染好。</li>
+<li>让你的view层次结构平坦一些，因为OpenGL在渲染Layer的时候，在碰到有层级的layer的时候，可能需要停下来吧两者何曾到一个buffer里面接着渲染，</li>
+<li>延迟加载图片，有时候边滚动变设置图片可能会有一定的影响，因此可以在滚动的时候imageview不执行setimages的操作，滚动停止的时候才加载图片，由于滚动的时候NSRunLoop是处于UITrackingRunLoopMode模式下，可以采用如下方式，将设置图片放到NSDefaultRunLoopMode模式下进行：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UIImage *downloadedImage = ...</span><br><span class="line">[self.avatarImageView performSelector:@selector(setImage:) withObject:downloaddImage afterDelay:0 inMOdes:@[NSDefaultRunLoopMode]];</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/11/git_commonly_used/" rel="next" title="git常用命令集">
+                <i class="fa fa-chevron-left"></i> git常用命令集
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="yida" />
+          <p class="site-author-name" itemprop="name">yida</p>
+          <p class="site-description motion-element" itemprop="description">伪文艺青年 天平男 iOS开发 90后</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Time_Profile进行检查"><span class="nav-number">1.</span> <span class="nav-text">使用Time Profile进行检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于ImageView相关的"><span class="nav-number">2.</span> <span class="nav-text">关于ImageView相关的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于UITableView使用的优化点"><span class="nav-number">3.</span> <span class="nav-text">关于UITableView使用的优化点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加速开打app："><span class="nav-number">4.</span> <span class="nav-text">加速开打app：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用AutoRelease_Pool"><span class="nav-number">5.</span> <span class="nav-text">使用AutoRelease Pool</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#理性的使用-drawRect：方法"><span class="nav-number">6.</span> <span class="nav-text">理性的使用-drawRect：方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用后台绘制："><span class="nav-number">7.</span> <span class="nav-text">使用后台绘制：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#首先创建一个AsynchronousDrawVie类继承UIView"><span class="nav-number">7.1.</span> <span class="nav-text">首先创建一个AsynchronousDrawVie类继承UIView</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#然后在initWithFrame：方法中去创建建立好UIImageView"><span class="nav-number">7.2.</span> <span class="nav-text">然后在initWithFrame：方法中去创建建立好UIImageView</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接下来就是我们的绘制方法，我下面代码只是一个演示，并不是说这段代码很耗时"><span class="nav-number">7.3.</span> <span class="nav-text">接下来就是我们的绘制方法，我下面代码只是一个演示，并不是说这段代码很耗时</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#调用后台绘制方法来替换UIImageView的UIImage"><span class="nav-number">7.4.</span> <span class="nav-text">调用后台绘制方法来替换UIImageView的UIImage</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#offscreen-render_离屏幕渲染"><span class="nav-number">8.</span> <span class="nav-text">offscreen-render 离屏幕渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#CPU的offscreen-render"><span class="nav-number">8.0.1.</span> <span class="nav-text">CPU的offscreen-render</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#GPU的离屏渲染"><span class="nav-number">8.0.2.</span> <span class="nav-text">GPU的离屏渲染</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#渲染的整个过程："><span class="nav-number">9.</span> <span class="nav-text">渲染的整个过程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#离屏渲染对性能的影响："><span class="nav-number">10.</span> <span class="nav-text">离屏渲染对性能的影响：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Blending"><span class="nav-number">11.</span> <span class="nav-text">Blending</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结："><span class="nav-number">12.</span> <span class="nav-text">总结：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yida</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
